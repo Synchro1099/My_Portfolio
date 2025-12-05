@@ -9,99 +9,30 @@ const Projects = () => {
       <Particle />
       <Container>
         <h1 className="project-heading">
-          Recent Top <strong className="yellow">Works </strong>
+          Projects <strong className="yellow">Works </strong>
         </h1>
         <p style={{ color: "white" }}>
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/JpjBwWb/photo-contest.png"
-              isBlog={false}
-              title="Photography Contest Website"
-              description="The Photography Contest Website, developed using the MERN stack, facilitates seamless participation for photographers in contests through user-friendly interfaces for photo uploads, voting, and contest management. Admins efficiently oversee contests with features for creation, updating, and deletion, ensuring smooth photo management. The platform fosters community engagement and talent showcasing, enhancing user experience and fostering a vibrant photography community."
-              techStack={["React","express", "Node.js", "MongoDB"]}
-              ghLink="https://github.com/atharva-narkhede/Photography_Contest_ReactJS"
-              demoLink="https://photography-contest-a6a50.web.app/"
-            />
-          </Col>
+         <Col md={4} className="project-card">
+              <ProjectCard
+                imgPath="https://i.ibb.co/XxnSxPN4/lily-co.png" // <- replace with the new image URL
+                isBlog={false}
+                title="Lily & Co."
+                description="The Photography Contest Website, developed using the MERN stack, facilitates seamless participation for photographers in contests through user-friendly interfaces for photo uploads, voting, and contest management. Admins efficiently oversee contests with features for creation, updating, and deletion, ensuring smooth photo management. The platform fosters community engagement and talent showcasing, enhancing user experience and fostering a vibrant photography community. Lily & Co. PH is a modern Filipino lifestyle brand offering thoughtfully crafted accessories designed to inspire confidence, simplicity, and everyday elegance. With a focus on quality materials and timeless styles, Lily & Co. PH creates pieces that effortlessly elevate your daily look while celebrating self-expression and individuality."
+                demoLink="https://lilyandco.com.ph/"
+              />
+           </Col>
+
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath="https://i.ibb.co/SJ2pQBR/ecomm.png"
+              imgPath="https://i.ibb.co/tMtsbJLr/Screenshot-2025-12-05-162113.png"
               isBlog={false}
               title="E-Commerce MERN Stack"
-              description="This project is a full-featured E-Commerce application built with ReactJS. It supports user authentication, product listings, and cart functionalities. The app is deployed on Firebase, and the backend API is hosted on Render."
-              techStack={["React", "Bootstrap", "express","Node.js", "MongoDB", "Firebase"]}
-              ghLink="https://github.com/atharva-narkhede/E-CommerceSite_ReactJS"
-              demoLink="https://e-commerce-a3b26.web.app/"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/tx2zND2/weather.png"
-              isBlog={false}
-              title="Weather Forecast GUI with Python"
-              description="The Weather Forecast App is a Python-based GUI application designed to provide comprehensive weather details for a specified location. It leverages various weather parameters to offer users a detailed and accurate forecast."
-              techStack={["Python"]}
-              ghLink="https://github.com/atharva-narkhede/Weather-Forecast-Python"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/NZnJ41x/project.jpg"
-              isBlog={false}
-              title="Market Basket Analysis for Amazon Product Recommendation"
-              description="Conducted Market Basket Analysis (MBA) on Amazon product dataset to enhance recommendations. Identified top-selling products and top products in each category using review count. Implemented association rule mining for personalized recommendations. Evaluated effectiveness through metrics."
-              techStack={["Python", "Pandas", "NumPy","Kaggle"]}
-              ghLink="https://github.com/atharva-narkhede/Market-Basket-Analysis-for-Amazon-Product-Recommedation"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/qBZNHWZ/portfolioo.png"
-              isBlog={false}
-              title="Personal Portfolio App with Flutter"
-              description="Developed a personal portfolio app using Flutter, featuring various pages including skills, projects, education, contact, and certificates. Implemented a clean and user-friendly interface to showcase skills and projects effectively. Utilized Flutter’s widgets and plugins to create dynamic and interactive pages, enhancing user experience and engagement."
-              techStack={["Flutter", "Dart"]}
-              ghLink="https://github.com/atharva-narkhede/portfolio-flutter"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/2S2bLXT/pg.png"
-              isBlog={false}
-              title="Alzheimer Disease Detection Research Project"
-              description="Conducted research on Alzheimer’s disease detection using a dataset and employing fuzzy rough set theory along with machine learning algorithms such as Support Vector Machine (SVM) and k-Nearest Neighbors (KNN). Achieved 90% accuracy in disease prediction using SVM."
-              techStack={["Python", "Scikit-learn","Kaggle"]}
-              ghLink="https://github.com/atharva-narkhede/Alzheimer-Disease-Detection"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/k55Wqr6/bmicalc.png"
-              isBlog={false}
-              title="BMI Calculator App using Flutter"
-              description="The BMI Calculator Flutter App, built with Flutter and Dart, swiftly calculates Body Mass Index (BMI) for both Android and iOS users. It seamlessly guides users through entering their age, height, weight, and gender, then provides personalized insights and ideal weight ranges based on their calculated BMI. This user-friendly app features a clean, intuitive interface and clear instructions, making it accessible to people of all technical backgrounds."
-              techStack={["Flutter", "Dart"]}
-              ghLink="https://github.com/atharva-narkhede/bmi_calculator_flutter"
-            />
-          </Col>
-          
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath="https://i.ibb.co/r0DX0jr/stickynotes.png"
-              isBlog={false}
-              title="Sticky Notes App"
-              description="Sticky Notes App is a simple and intuitive Android application developed in Android Studio using Java. It allows users to create, edit, and manage their notes conveniently. This app is designed to be user-friendly, providing a seamless experience for organizing your thoughts and tasks on the go."
-              techStack={["Java", "Android","AndroidStudio"]}
-              ghLink="https://github.com/atharva-narkhede/Sticky_Notes_Android"
+              description="MSTCONNECT PH is an online training and consultancy platform offering affordable workshops and courses across various fields, including engineering, IT, business, and personal development. It empowers individuals to enhance their skills, build their personal brand, and advance their careers. The platform connects learners, instructors, and professionals, fostering a supportive community for growth and learning. With practical, industry-relevant content, MSTCONNECT PH ensures participants gain real-world knowledge they can apply immediately. Its mission is to make quality education accessible, convenient, and engaging for everyone."
+             demoLink="https://www.mstconnectph.com/"
             />
           </Col>
         </Row>

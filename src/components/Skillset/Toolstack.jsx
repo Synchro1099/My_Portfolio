@@ -3,7 +3,9 @@ import { Col, Row } from "react-bootstrap";
 import {
   SiVisualstudiocode,
   SiPostman,
-  SiFirebase
+  SiFirebase,
+  SiShopify,
+  SiFigma
 } from "react-icons/si";
 
 const Toolstack = () => {
@@ -17,6 +19,12 @@ const Toolstack = () => {
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <SiFirebase />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiShopify />
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <SiFigma />
       </Col>
     </Row>
   );

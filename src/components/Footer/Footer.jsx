@@ -2,10 +2,11 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
   AiFillGithub,
+  AiOutlineFacebook,
   AiOutlineTwitter
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
+
 
 const Footer = () => {
   let date = new Date();
@@ -14,7 +15,7 @@ const Footer = () => {
     <Container fluid className="footer">
       <Row>
         <Col md="4" className="footer-copywright">
-          <span>Dedicated to creating impactful solutions!</span>
+          <span>Turning Concepts into Functional Websites</span>
         </Col>
         <Col md="4" className="footer-copywright">
           <span>Copyright © {year}</span>
@@ -23,7 +24,7 @@ const Footer = () => {
           <ul className="footer-icons">
             <li className="social-icons">
               <a
-                href="https://github.com/atharva-narkhede"
+                href="https://github.com/Synchro1099"
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -34,18 +35,18 @@ const Footer = () => {
             </li>
             <li className="social-icons">
               <a
-                href="https://twitter.com/AtharvaNarkhed9"
+                href="https://www.facebook.com/pereda.janmark"
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="twitter"
+                aria-label="facebook"
               >
-                <AiOutlineTwitter />
+                <AiOutlineFacebook />
               </a>
             </li>
             <li className="social-icons">
               <a
-                href="https://www.linkedin.com/in/atharva-narkhede-3095b024a/"
+                href="https://www.linkedin.com/in/jan-mark-pereda-209806262/"
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -54,17 +55,7 @@ const Footer = () => {
                 <FaLinkedinIn />
               </a>
             </li>
-            <li className="social-icons">
-              <a
-                href="https://leetcode.com/atharva-narkhede/"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="leetcode"
-              >
-                <SiLeetcode />
-              </a>
-            </li>
+            
           </ul>
         </Col>
       </Row>

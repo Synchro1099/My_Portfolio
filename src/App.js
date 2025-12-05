@@ -20,7 +20,7 @@ import ScrollToTop from "./components/ScrollToTop"
 import "./App.css";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Certificate from "./pages/Certificate";
+
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -44,7 +44,7 @@ function App() {
           <Route path="/skillset" element={<Skill />} />
           <Route path="/project" element={<Project />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="/certificates" element={<Certificate />} />
+        
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/"/>} />
         </Routes>

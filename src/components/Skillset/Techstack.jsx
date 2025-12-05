@@ -14,7 +14,14 @@ import {
   SiExpress,
   SiCss3,
   SiDart,
-  SiFlutter
+  SiFlutter,
+  SiTailwindcss,
+  SiPhp,
+  SiMysql,
+  SiNpm,
+  SiBootstrap,
+  SiJava,
+  SiReact
 } from "react-icons/si";
 
 const Techstack = () => {
@@ -58,6 +65,27 @@ const Techstack = () => {
       <Col xs={4} md={2} className="tech-icons">
         <DiGit />
       </Col>
+      <Col xs={4} md={2} className="tech-icons">
+              <SiTailwindcss />
+            </Col>
+      <Col xs={4} md={2} className="tech-icons">
+              <SiPhp />
+       </Col>   
+       <Col xs={4} md={2} className="tech-icons">
+               <SiMysql />
+        </Col>   
+        <Col xs={4} md={2} className="tech-icons">
+               <SiNpm />
+        </Col>
+        <Col xs={4} md={2} className="tech-icons">
+               <SiBootstrap />
+        </Col>
+        <Col xs={4} md={2} className="tech-icons">
+               <SiJava />
+        </Col>
+        <Col xs={4} md={2} className="tech-icons">
+               <SiReact />
+        </Col>
     </Row>
   );
 }

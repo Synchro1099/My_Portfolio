@@ -9,8 +9,8 @@ html {
       rgba(5, 8, 40, 0.87), rgba(1, 4, 39, 0.925)
     );
   
-    --imp-text-color: #7500fa;
-    --imp-bold-text-color: #7500fa;
+    --imp-text-color: #E3E3E3;
+    --imp-bold-text-color: #456882;
   }
   
   .yellow {
@@ -35,8 +35,8 @@ html {
     width: 100%;
     height: 100%;
     z-index: 999999;
-    background-color: #0c0513;
-    background-image: url(./assets/pre.svg);
+    background-color: #1b3c53;
+    background-image: url(./assets/Walk1.gif);
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -60,18 +60,18 @@ html {
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #2d005c;
+    background: #1B3C53;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgba(77, 1, 165, 0.959);
+    background: rgb(27, 60, 83);
     border-radius: 12px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: rgb(121, 7, 250);
+    background: rgb(27, 60, 83);
     border-radius: 12px;
   }
   
@@ -100,7 +100,7 @@ html {
   
   .navbar-toggler span {
     display: block !important;
-    background-color: #7500fa !important;
+    background-color: #456882 !important;
     height: 4px !important;
     width: 27px !important;
     margin-top: 5px !important;
@@ -197,7 +197,7 @@ html {
     height: 5px;
     width: 0;
     border-radius: 16px;
-    background: #6e00fd;
+    background: #456882;
     bottom: 1px;
     left: 0;
     z-index: -1;
@@ -213,7 +213,7 @@ html {
   /* --------- */
   .wave {
     animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
-    animation-duration: 2.1s; /* Change to speed up or slow down */
+    animation-duration: 2.0s; /* Change to speed up or slow down */
     animation-iteration-count: infinite; /* Never stop waving :) */
     transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
     display: inline-block;
@@ -260,8 +260,8 @@ html {
   .home-section {
     position: relative;
     z-index: -1;
-    background-image: var(--image-gradient), url(./assets/home-bg.jpg);
-    background-position: top center;
+    background-image: var(--image-gradient), url(./assets/HOME-BGg.jpg);
+    background-position:  center;
     background-repeat: no-repeat;
     padding-bottom: 30px !important;
     padding-top: 30px !important;
@@ -284,18 +284,18 @@ html {
   }
   
   .main-name {
-    color: #7500fa;
+    color: #456882;
   }
   
   .Typewriter__wrapper {
     font-size: 2.2em !important;
-    color: #7500fa!important;
+    color: #E3E3E3!important;
     /* color: #be6adf !important; */
     font-weight: 600 !important;
   }
   .Typewriter__cursor {
     font-size: 2.4em !important;
-    color: #7500fa !important;
+    color: #E3E3E3 !important;
   }
   
   @media (max-width: 767px) {
@@ -325,7 +325,7 @@ html {
     position: relative;
     padding-bottom: 70px !important;
     padding-top: 70px !important;
-    /* background-image: var(--image-gradient), url('./assets/home-bg.jpg'); */
+     background-image: var(--image-gradient), url('./assets/HOME-BGg.jpg'); 
   }
   
   .home-about-description {
@@ -471,12 +471,12 @@ html {
     margin: 15px !important;
     padding: 10px !important;
     opacity: 0.93 !important;
-    border: 1.7px solid rgb(89, 0, 190) !important;
+    border: 1.7px solid rgb(69, 104, 130) !important;
     vertical-align: middle !important;
     text-align: center !important;
     border-radius: 5px !important;
     display: table !important;
-    box-shadow: 4px 5px 4px 3px rgba(117, 0, 250, 0.37) !important;
+    box-shadow: 4px 5px 4px 3px rgb(227, 227, 227) !important;
     overflow: hidden !important;
     transition: all 0.4s ease 0s !important;
   }
@@ -490,7 +490,7 @@ html {
   .tech-icons:hover {
     transform: scale(1.05) !important;
     overflow: hidden !important;
-    border: 2.2px solid rgba(117, 0, 250, 1) !important;
+    border: 2.2px solid rgb(35, 76, 106) !important;
   }
   .tech-icon-images {
     padding: 20px !important;
@@ -535,7 +535,7 @@ html {
 }
 
 .project-card-view {
-  box-shadow: 0 4px 5px 3px rgb(72, 0, 155) !important;
+  box-shadow: 0 4px 5px 3px rgb(227, 227, 227) !important;
   /* box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459) !important; */
   color: white !important;
   background-color: transparent !important;
@@ -547,7 +547,7 @@ html {
   transform: scale(1.02) !important;
   overflow: hidden !important;
   /* box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561) !important; */
-  box-shadow: 0 4px 5px 3px rgba(117, 0, 250, 1) !important;
+  box-shadow: 0 4px 5px 3px rgb(227, 227, 227) !important;
 }
 
 .blog-card {
@@ -560,7 +560,7 @@ html {
 
 .blog-card-view {
   background-color: transparent !important;
-  box-shadow: 0 3px 3px 2px rgba(145, 77, 161, 0.459) !important;
+  box-shadow: 0 3px 3px 2px rgb(35, 76, 106)!important;
   color: white !important;
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
@@ -578,7 +578,7 @@ html {
 .blog-card-view:hover {
   transform: scale(1.02) !important;
   overflow: hidden !important;
-  box-shadow: 0 3px 3px 5px rgba(155, 88, 173, 0.65) !important;
+  box-shadow: 0 3px 3px 5px rgb(35, 76, 106) !important;
 }
 
 .card-img-top {
@@ -596,18 +596,18 @@ html {
 .btn-primary {
   /* color: #fff !important; */
   color: rgb(24, 2, 44) !important;
-  background-color: #7500fa !important;
-  border-color: #7500fa !important;
+  background-color: #234C6A !important;
+  border-color: #234C6A !important;
   /* background-color: #623686 !important;
   border-color: #623686 !important; */
 }
 
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #7500fa !important;
-  border-color: #7500fa !important;
-  /* background-color: #6d20c5d7 !important;
-  border-color: #6d20c5d7 !important; */
+  background-color: #234C6A !important;
+  border-color: #234C6A !important;
+   background-color: #6d20c5d7 !important;
+  border-color: #234C6A !important; 
 }
 .btn:focus {
   outline: none !important;

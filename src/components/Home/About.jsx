@@ -1,13 +1,14 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ProfilePic from "../../assets/profile-pic.png";
+import ProfilePic from "../../assets/picture.jpg";
 import Tilt from "react-parallax-tilt";
 import {
   AiFillGithub,
-  AiOutlineTwitter
+  AiOutlineFacebook,
+ 
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
+
 
 const About = () => {
   return (
@@ -16,24 +17,26 @@ const About = () => {
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="yellow"> INTRODUCE </span> MYSELF
+               <span className="yellow"> About ME </span> 
             </h1>
             <p className="home-about-body">
-              Hi, my name is <span className="yellow">Atharva Narkhede</span> and I'm from <span className="yellow">Pune, MH, India</span>.
-              <br />
-              <br />
-              I am a final year B.Tech CSE student at SRM University, graduating in 2025.
-              <br />
-              <br />
-              As a <b className="yellow">Full-Stack Developer</b>, I enjoy tackling new challenges and continuously expanding my skill set. I am proficient in 
-              <b className="yellow"> JavaScript, C++, Python</b>.
-              <br />
-              <br />
-              I have a passion for working with <b className="yellow">Node.js, MongoDB,</b> and modern JavaScript libraries and frameworks like 
-              <i><b className="yellow"> React.js</b></i>. I am also interested in building new 
-              <i><b className="yellow"> Web Technologies and Products</b></i> and exploring areas related to 
-              <i><b className="yellow"> Data Science & Machine Learning</b></i>.
-            </p>
+                  I'm <span className="yellow">Jan Mark Pereda</span> from <span className="yellow">Angeles City, Pampanga, Philippines</span>.
+                  <br />
+                  <br />
+                  I specialize in <b className="yellow">designing intuitive, engaging, and user-centered digital experiences</b> that not only look great but feel natural for users.
+                  <br />
+                  <br />
+                  As a <b className="yellow">UX/UI Designer & Full-Stack Developer</b>, I focus on crafting clean interfaces, meaningful interactions, and seamless user journeys. I also work with 
+                  <b className="yellow">JavaScript, C++, and Python</b> to bring designs to life.
+                  <br />
+                  <br />
+                  I love designing and building products using <b className="yellow">Node.js, MongoDB</b>, and modern frameworks like 
+                  <i><b className="yellow">React.js</b></i>. I’m also exploring <i><b className="yellow">Cloud Computing</b></i> to create scalable and efficient digital solutions.
+                  <br />
+                  <br />
+                  My goal is to deliver <b className="yellow">visually compelling, user-focused, and high-performing designs</b> that transform ideas into meaningful digital products.
+                </p>
+
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
@@ -50,7 +53,7 @@ const About = () => {
             <ul className="home-about-social-links">
               <li className="social-icons">
                 <a
-                  href="https://github.com/atharva-narkhede"
+                  href="https://github.com/Synchro1099"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -61,18 +64,18 @@ const About = () => {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://twitter.com/AtharvaNarkhed9"
+                  href="https://www.facebook.com/pereda.janmark"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
-                  aria-label="twitter"
+                  aria-label="facebook"
                 >
-                  <AiOutlineTwitter />
+                  <AiOutlineFacebook />
                 </a>
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.linkedin.com/in/atharva-narkhede-3095b024a/"
+                  href="https://www.linkedin.com/in/jan-mark-pereda-209806262/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -81,17 +84,7 @@ const About = () => {
                   <FaLinkedinIn />
                 </a>
               </li>
-              <li className="social-icons">
-                <a
-                  href="https://leetcode.com/atharva-narkhede"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="icon-colour home-social-icons"
-                  aria-label="leetcode"
-                >
-                  <SiLeetcode />
-                </a>
-              </li>
+              
             </ul>
           </Col>
         </Row>

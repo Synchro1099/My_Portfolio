@@ -89,16 +89,7 @@ const ProjectCard = (props) => {
               </Button>
             )}
           </Card.Text>
-          <Card.Text style={{ textAlign: "justify", fontSize: "15px" }}>
-            <strong>Tech Stack:</strong>{" "}
-            <div style={{ display: "flex", gap: "10px", marginTop: "5px" }}>
-              {props.techStack.map((tech, index) => (
-                <div key={index} title={tech}>
-                  {techIcons[tech] || tech}
-                </div>
-              ))}
-            </div>
-          </Card.Text>
+          
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
             <Button
               variant="primary"
@@ -144,13 +135,8 @@ const ProjectCard = (props) => {
           <strong>Description:</strong> {props.description}
           <br />
           <br />
-          <strong>Tech Stack:</strong>{" "}
-          {props.techStack.map((tech, index) => (
-            <span key={index}>
-              {techIcons[tech] || tech}
-              {index !== props.techStack.length - 1 && ", "}
-            </span>
-          ))}
+         
+        
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={toggleModal}>
