@@ -25,7 +25,7 @@ const Footer = () => {
             <div className="footer-copyright-links">
               <span className="footer-copyright">Copyright © {year} Jan Mark Pereda</span>
               <div className="footer-legal-links">
-                <a href="#privacy" className="footer-link">Privacy</a>
+                <a href="#privacy" className="footer-link">Privacy & Policy</a>
                 <span className="footer-link-separator">|</span>
                 <a href="#terms" className="footer-link">Terms</a>
                 <span className="footer-link-separator">|</span>
