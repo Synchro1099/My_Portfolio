@@ -6,11 +6,31 @@ import Social from '../components/Contact/Social';
 
 const Contact = () => {
   return (
-    <Container style={{padding: '60px'}}>
+    <div className="contact-page">
       <Particle />
-      <ContactForm />
-      <Social />
-    </Container>
+      <div className="contact-hero-section">
+        <Container>
+          <div className="contact-hero-content">
+            <div className="contact-hero-badge">CONTACT</div>
+            <h1 className="contact-hero-title">
+              Let's <span className="contact-hero-accent">Work Together</span>
+            </h1>
+            <p className="contact-hero-description">
+              Have a project in mind or want to discuss opportunities? 
+              I'd love to hear from you. Send me a message and I'll respond as soon as possible.
+            </p>
+          </div>
+        </Container>
+      </div>
+      
+      <Container className="contact-form-section">
+        <ContactForm />
+      </Container>
+
+      <Container className="contact-social-section">
+        <Social />
+      </Container>
+    </div>
   )
 }
 

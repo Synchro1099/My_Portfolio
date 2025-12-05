@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from "react-bootstrap";
 import {
   AiFillGithub,
-  AiOutlineTwitter
+  AiOutlineFacebook
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -22,35 +22,37 @@ const Social = () => {
                 <ul className="contact-social-links">
                   <li className="contact-icons">
                     <a
-                      href="https://github.com/atharva-narkhede"
+                      href="https://github.com/Synchro1099"
                       target="_blank"
                       rel="noreferrer"
-                      className="icon-color  contact-social-icons"
+                      className="icon-color contact-social-icons"
+                      aria-label="github"
                     >
                       <AiFillGithub />
                     </a>
                   </li>
                   <li className="contact-icons">
                     <a
-                      href="https://twitter.com/AtharvaNarkhed9"
+                      href="https://www.facebook.com/pereda.janmark"
                       target="_blank"
                       rel="noreferrer"
-                      className="icon-color  contact-social-icons"
+                      className="icon-color contact-social-icons"
+                      aria-label="facebook"
                     >
-                      <AiOutlineTwitter />
+                      <AiOutlineFacebook />
                     </a>
                   </li>
                   <li className="contact-icons">
                     <a
-                      href="https://www.linkedin.com/in/atharva-narkhede-3095b024a/"
+                      href="https://www.linkedin.com/in/jan-mark-pereda-209806262/"
                       target="_blank"
                       rel="noreferrer"
-                      className="icon-color  contact-social-icons"
+                      className="icon-color contact-social-icons"
+                      aria-label="linkedin"
                     >
                       <FaLinkedinIn />
                     </a>
                   </li>
-                  
                 </ul>
               </Col>
             </Row>

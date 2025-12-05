@@ -1,6 +1,9 @@
 import React from "react";
-function PreLoader(props) {
-  return <div id={props.load ? "preloader" : "preloader-none"}></div>;
+
+function PreLoader({ load }) {
+  if (!load) return null; // render nothing when load is false
+
+  return <div id="preloader"></div>; // only show when loading
 }
 
 export default PreLoader;

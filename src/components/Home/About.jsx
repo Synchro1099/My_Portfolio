@@ -4,8 +4,7 @@ import ProfilePic from "../../assets/picture.jpg";
 import Tilt from "react-parallax-tilt";
 import {
   AiFillGithub,
-  AiOutlineFacebook,
- 
+  AiOutlineFacebook
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -56,7 +55,7 @@ const About = () => {
                   href="https://github.com/Synchro1099"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
                   aria-label="github"
                 >
                   <AiFillGithub />
@@ -67,7 +66,7 @@ const About = () => {
                   href="https://www.facebook.com/pereda.janmark"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
                   aria-label="facebook"
                 >
                   <AiOutlineFacebook />
@@ -78,13 +77,12 @@ const About = () => {
                   href="https://www.linkedin.com/in/jan-mark-pereda-209806262/"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
                   aria-label="linkedin"
                 >
                   <FaLinkedinIn />
                 </a>
               </li>
-              
             </ul>
           </Col>
         </Row>

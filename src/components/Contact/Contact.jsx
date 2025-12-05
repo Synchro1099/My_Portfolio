@@ -1,81 +1,8 @@
-// import React,{useState, useRef} from 'react'
-// import emailjs from "@emailjs/browser";
-// import { Container, Row, Col } from "react-bootstrap";
-// import Button from 'react-bootstrap/Button';
-// import './Contact.css'
-
-// const Contact = () => {
-//     const form = useRef();
-//     const [done, setDone] = useState(false)
-//     const [notDone, setNotDone] = useState(false)
-//     const [formData, setFormData] = useState({});
-
-//     const handleChange = (e) => {
-//         setFormData({...formData, [e.target.name] : e.target.value})
-//         setDone(false)
-//         setNotDone(false)
-//     }
-
-//     const sendEmail = (e) => {
-//     e.preventDefault();
-    
-//     if(!formData.from_name || !formData.reply_to ||!formData.message){
-//       setNotDone(true)
-//     } else {
-      
-//       //  Please use your own credentials from emailjs or i will recive your email
-      
-//     emailjs
-//       .sendForm(
-//         "service_7aclukr",
-//         "template_tlwrob8",
-//         form.current,
-//         "q0Mej0SqPWdJ9gjaI-"
-//       )
-//       .then(
-//         (result) => {
-//           console.log(result.text);
-//           setDone(true);
-//         },
-//         (error) => {
-//           console.log(error.text);
-//         }
-//       );
-//     }
-//     };
-    
-
-//     return(
-//         <Container style={{paddingTop: '50px'}} >
-//             <Row >
-//             <Col md={6} className="c-left" >
-//             <h1 >Get in Touch</h1>
-//             <h1 className="yellow">Contact me</h1>
-//             </Col>
-//             <Col md={6} className="c-right">
-//                 <form ref={form} onSubmit={sendEmail}>
-//                 <input type="text" name="from_name" className="user"  placeholder="Name" onChange={handleChange}/>
-//                 <input type="email" name="reply_to" className="user" placeholder="Email" onChange={handleChange} />
-//                 <textarea name="message" className="user" placeholder="Message" onChange={handleChange} />
-//                 <span className='not-done' >{notDone && "Please, fill all the input field"}</span>
-//                 <Button type="submit" className="button" disabled={done}>Send</Button>
-//                 <span className='done'>{done && "Thanks for contacting me and be sure i have recieved your mail. If you are testing this functionality then i am confirming this thing working perfectly fine. If you have any serious query then i will reply. Also if you need me, you can conatct me on Linkedin."}</span>
-//                 </form>
-//             </Col>
-//             </Row>
-//         </Container>
-//     )
-// }
-
-// export default Contact
-
-
-
 import React, { useState, useRef } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import './Contact.css';
-
+import emailjs from '@emailjs/browser';
 const Contact = () => {
     const form = useRef();
     const [done, setDone] = useState(false);
@@ -95,13 +22,15 @@ const Contact = () => {
     const sendEmail = async (e) => {
         e.preventDefault();
         
+         emailjs.sendForm('service_em1z6kn', 'template_cjshpvu', form.current, 'bFrw2BZPiL6alq3jP')
+
         if (!formData.from_name || !formData.reply_to || !formData.message) {
             setNotDone(true);
         } else {
             const formDataObj = new FormData(form.current);
-            formDataObj.append('service_id', 'service_7aclukr');
-            formDataObj.append('template_id', 'template_tlwrob8');
-            formDataObj.append('user_id', 'q0Mej0SqPWdJ9gjaI');
+            formDataObj.append('service_id', 'service_em1z6kn');
+            formDataObj.append('template_id', 'template_30qsoxg');
+            formDataObj.append('user_id', 'bFrw2BZPiL6alq3jP');
 
             try {
                 const response = await fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
@@ -127,46 +56,77 @@ const Contact = () => {
     };
 
     return (
-        <Container style={{ paddingTop: '50px' }}>
-            <Row>
-                <Col md={6} className="c-left">
-                    <h1>Get in Touch</h1>
-                    <h1 className="yellow">Contact me</h1>
-                </Col>
-                <Col md={6} className="c-right">
-                    <form ref={form} onSubmit={sendEmail}>
-                        <input 
-                            type="text" 
-                            name="from_name" 
-                            className="user"  
-                            placeholder="Name" 
-                            onChange={handleChange} 
-                            value={formData.from_name}
-                        />
-                        <input 
-                            type="email" 
-                            name="reply_to" 
-                            className="user" 
-                            placeholder="Email" 
-                            onChange={handleChange} 
-                            value={formData.reply_to}
-                        />
-                        <textarea 
-                            name="message" 
-                            className="user" 
-                            placeholder="Message" 
-                            onChange={handleChange} 
-                            value={formData.message}
-                        />
-                        <span className='not-done'>{notDone && "Please, fill all the input fields"}</span>
-                        <Button type="submit" className="button" disabled={done}>Send</Button>
-                        <span className='done'>
-                            {done && "Thanks for contacting me. I have received your mail. If you are testing this functionality, it is working perfectly fine. If you have any serious query, I will reply. Also, you can contact me on LinkedIn."}
-                        </span>
-                    </form>
+        <div className="contact-form-wrapper">
+            <Row className="justify-content-center">
+                <Col lg={8} md={10}>
+                    <div className="contact-form-container">
+                        <form ref={form} onSubmit={sendEmail} className="professional-contact-form">
+                            <div className="form-group">
+                                <label htmlFor="from_name" className="form-label">Name</label>
+                                <input 
+                                    type="text" 
+                                    id="from_name"
+                                    name="from_name" 
+                                    className="form-input"  
+                                    placeholder="Your name" 
+                                    onChange={handleChange} 
+                                    value={formData.from_name}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="reply_to" className="form-label">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="reply_to"
+                                    name="reply_to" 
+                                    className="form-input" 
+                                    placeholder="your.email@example.com" 
+                                    onChange={handleChange} 
+                                    value={formData.reply_to}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="message" className="form-label">Message</label>
+                                <textarea 
+                                    id="message"
+                                    name="message" 
+                                    className="form-textarea" 
+                                    placeholder="Tell me about your project or inquiry..." 
+                                    onChange={handleChange} 
+                                    value={formData.message}
+                                    rows={6}
+                                    required
+                                />
+                            </div>
+
+                            {notDone && (
+                                <div className="form-error">
+                                    Please fill in all the required fields
+                                </div>
+                            )}
+
+                            {done && (
+                                <div className="form-success">
+                                    Thank you! I've received your message and will get back to you soon.
+                                </div>
+                            )}
+
+                            <Button 
+                                type="submit" 
+                                className="contact-submit-btn" 
+                                disabled={done}
+                            >
+                                {done ? 'Message Sent ✓' : 'Send Message'}
+                            </Button>
+                        </form>
+                    </div>
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 };
 

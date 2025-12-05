@@ -4,44 +4,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
-import {
-  SiReact,
-  SiBootstrap,
-  SiNodedotjs,
-  SiFirebase,
-  SiMongodb,
-  SiPython,
-  SiFlutter,
-  SiDart,
-  SiPandas,
-  SiNumpy,
-  SiScikitlearn,
-  SiKaggle,
-  SiExpress,
-  SiJava,
-  SiAndroidstudio,
-  SiAndroid
-} from "react-icons/si";
-
-const techIcons = {
-  React: <SiReact size={30} />,
-  Bootstrap: <SiBootstrap size={30} />,
-  "Node.js": <SiNodedotjs size={30} />,
-  Firebase: <SiFirebase size={30} />,
-  MongoDB: <SiMongodb size={30} />,
-  Python: <SiPython size={30} />,
-  Flutter: <SiFlutter size={30} />,
-  Dart: <SiDart size={30} />,
-  Pandas: <SiPandas size={30} />,
-  NumPy: <SiNumpy size={30} />,
-  "Scikit-learn": <SiScikitlearn size={30} />,
-  Kaggle: <SiKaggle size={30} />,
-  express: <SiExpress size={30} />,
-  Java: <SiJava size={30} />,
-  AndroidStudio: <SiAndroidstudio size={30} />,
-  Android: <SiAndroid size={30} />,
-  // Add more key-value pairs for other technologies as needed
-};
 
 const ProjectCard = (props) => {
   const maxLength = 150; // Adjust as needed
