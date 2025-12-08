@@ -30,16 +30,19 @@ const Home = () => {
 
               <div className="hero-description-wrapper">
                 <p className="hero-description">
-                  With <strong>3 years of experience</strong> in creating exceptional digital experiences, 
-                  I bridge the gap between <strong>beautiful design</strong> and <strong>robust functionality</strong>. 
-                  I transform complex ideas into intuitive, user-centered solutions that not only look stunning 
-                  but perform flawlessly.
-                </p>
-                <p className="hero-description-secondary">
-                  Specializing in <strong>React.js</strong>, <strong>Node.js</strong>, and <strong>MongoDB</strong>, 
-                  I craft full-stack applications with a focus on user experience, performance, and scalability. 
-                  From concept to deployment, I bring your vision to life.
-                </p>
+                    I'm a passionate Full Stack Web Developer with a deep love for crafting
+                    immersive web experiences. With <strong>3 years of experience</strong> in the
+                    industry, I specialize in building high-performance, scalable applications
+                    that seamlessly blend technology with exceptional user experience.
+                  </p>
+
+                  <p className="hero-description-secondary">
+                    Skilled in <strong>React.js</strong>, <strong>Node.js</strong>, and
+                    <strong> MongoDB</strong>, I develop end-to-end solutions that are both
+                    intuitive and powerful. From concept to deployment, I turn ideas into
+                    dynamic, user-focused digital products.
+                  </p>
+
               </div>
 
               <div className="hero-stats">
