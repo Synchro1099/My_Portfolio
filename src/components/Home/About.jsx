@@ -18,15 +18,16 @@ const About = () => {
             <h1 style={{ fontSize: "2.6em" }}>
                <span className="yellow"> About ME </span> 
             </h1>
-                            <p className="home-about-body">
-                    Hailing from my roots in <span className="yellow">Angeles City, Pampanga</span>, 
-                    I grew up with a deep interest in technology, which was nurtured and honed at 
-                    <span className="yellow"> Holy Angel University </span>.
+               <p className="home-about-body">
+                    Full Stack Web Developer from <span className="yellow">Angeles City, Pampanga</span>, with a strong foundation built at <span className="yellow">Holy Angel University</span>. 
                     <br />
                     <br />
-                    I do more than just develop – I <b className="yellow">engineer solutions, innovate, and elevate</b> digital experiences. I thrive on a <b className="yellow">relentless pursuit of improvement</b>, 
-                    constantly seeking new challenges to refine my craft.
+                    I specialize in creating high-performance, user-focused digital solutions, combining clean design with robust functionality. I <b className="yellow">engineer solutions, innovate, and deliver impactful experiences</b> that drive results. 
+                    <br />
+                    <br />
+                    <b className="yellow">Let’s build something amazing together.</b>
                   </p>
+
 
 
 
