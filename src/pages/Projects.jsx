@@ -28,7 +28,7 @@ const Projects = () => {
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath="https://i.ibb.co/tMtsbJLr/Screenshot-2025-12-05-162113.png"
-              title="E-Commerce MERN Stack"
+              title="MST CONNECT PH"
               description="MSTCONNECT PH is an online training and consultancy platform offering affordable workshops and courses across various fields, including engineering, IT, business, and personal development. It empowers individuals to enhance their skills, build their personal brand, and advance their careers. The platform connects learners, instructors, and professionals, fostering a supportive community for growth and learning. With practical, industry-relevant content, MSTCONNECT PH ensures participants gain real-world knowledge they can apply immediately. Its mission is to make quality education accessible, convenient, and engaging for everyone."
              demoLink="https://www.mstconnectph.com/"
             />
