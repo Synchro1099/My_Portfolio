@@ -19,7 +19,7 @@ const Projects = () => {
               <ProjectCard
                 imgPath="https://i.ibb.co/XxnSxPN4/lily-co.png"
                 title="Lily & Co."
-                description="The Photography Contest Website, developed using the MERN stack, facilitates seamless participation for photographers in contests through user-friendly interfaces for photo uploads, voting, and contest management. Admins efficiently oversee contests with features for creation, updating, and deletion, ensuring smooth photo management. The platform fosters community engagement and talent showcasing, enhancing user experience and fostering a vibrant photography community. Lily & Co. PH is a modern Filipino lifestyle brand offering thoughtfully crafted accessories designed to inspire confidence, simplicity, and everyday elegance. With a focus on quality materials and timeless styles, Lily & Co. PH creates pieces that effortlessly elevate your daily look while celebrating self-expression and individuality."
+                description="A jewelry e-commerce website for Lily & Co. PH, featuring elegant handcrafted rings and fine jewelry with a clean, modern, and user-friendly design"
                 demoLink="https://lilyandco.com.ph/"
               />
            </Col>
