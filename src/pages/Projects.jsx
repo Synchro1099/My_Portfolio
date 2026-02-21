@@ -2,19 +2,26 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "../components/Projects/ProjectCard";
 import Particle from "../components/Particle";
+import SEO from "../components/SEO";
 
 const Projects = () => {
   return (
-    <Container fluid className="project-section">
-      <Particle />
-      <Container>
-        <h1 className="project-heading">
-          Projects <strong className="yellow">Works </strong>
-        </h1>
-        <p style={{ color: "#234C6A" }}>
-          Here are a few projects I've worked on recently.
-        </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+    <>
+      <SEO
+        title="Projects"
+        path="/project"
+        description="View recent projects by Jan Mark Pereda including business websites and full-stack portfolio work."
+      />
+      <Container fluid className="project-section">
+        <Particle />
+        <Container>
+          <h1 className="project-heading">
+            Projects <strong className="yellow">Works </strong>
+          </h1>
+          <p style={{ color: "#234C6A" }}>
+            Here are a few projects I've worked on recently.
+          </p>
+          <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
          <Col md={4} className="project-card">
               <ProjectCard
                 imgPath="https://i.ibb.co/XxnSxPN4/lily-co.png"
@@ -33,9 +40,21 @@ const Projects = () => {
              demoLink="https://www.mstconnectph.com/"
             />
           </Col>
-        </Row>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath="https://www.charliesbarber.shop/images/optimized/store-960.webp"
+              title="Charlie's Barber & Salon"
+              description="Charlie's Barber & Salon is a service-focused website for a top-rated barbershop in Angeles City, Pampanga. It showcases haircut, fade, coloring, and grooming services, highlights a portfolio of real client results, and provides clear booking and contact paths for both walk-ins and appointments. The site is designed to help customers quickly explore services and confidently choose a style that fits their look and lifestyle."
+              demoLink="https://www.charliesbarber.shop/#"
+            />
+          </Col>
+          </Row>
+        </Container>
       </Container>
-    </Container>
+    </>
+
+    
   );
 };
 

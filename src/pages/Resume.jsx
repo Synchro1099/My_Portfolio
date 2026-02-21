@@ -5,19 +5,24 @@ import { AiOutlineDownload, AiOutlineZoomIn, AiOutlineClose } from "react-icons/
 
 import Particle from '../components/Particle';
 import pdf from "../assets/Jan Mark Pereda updated.pdf";
+import SEO from "../components/SEO";
 
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
+
 
 const Resume = () => {
+  const DEFAULT_ZOOM = 1.25;
   const [width, setWidth] = useState(window.innerWidth);
   const [numPages, setNumPages] = useState(null);
   const [scale, setScale] = useState(1.0);
   const [showModal, setShowModal] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState(1.0);
+  const [zoomLevel, setZoomLevel] = useState(DEFAULT_ZOOM);
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,12 +59,12 @@ const Resume = () => {
 
   const handleOpenModal = () => {
     setShowModal(true);
-    setZoomLevel(1.0);
+    setZoomLevel(DEFAULT_ZOOM);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setZoomLevel(1.0);
+    setZoomLevel(DEFAULT_ZOOM);
   };
 
   const handleZoomIn = () => {
@@ -71,11 +76,16 @@ const Resume = () => {
   };
 
   const handleResetZoom = () => {
-    setZoomLevel(1.0);
+    setZoomLevel(DEFAULT_ZOOM);
   };
 
   return (
     <div>
+      <SEO
+        title="Resume"
+        path="/resume"
+        description="View and download Jan Mark Pereda's resume, professional experience, and technical background."
+      />
       <Container fluid className="resume-section">
         <Particle />
         

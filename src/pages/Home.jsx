@@ -5,15 +5,22 @@ import homeLogo from '../assets/about1.png'
 import Particle from '../components/Particle';
 import About from '../components/Home/About';
 import Type from '../components/Home/Type';
+import SEO from '../components/SEO';
 import { AiOutlineDownload, AiOutlineArrowRight } from "react-icons/ai";
 
 const Home = () => {
   return (
-    <section>
-      <Container fluid className="home-section" id="home">
-        <Particle />
-        <Container className="home-content">
-          <Row className="align-items-center">
+    <>
+      <SEO
+        title="Home"
+        path="/"
+        description="Explore Jan Mark Pereda's portfolio featuring full-stack web development, UX/UI design, and real-world project work."
+      />
+      <section>
+        <Container fluid className="home-section" id="home">
+          <Particle />
+          <Container className="home-content">
+            <Row className="align-items-center">
             <Col lg={6} className="hero-text-section">
               <div className="hero-greeting">
                 <span className="greeting-text">Welcome to My Portfolio</span>
@@ -90,11 +97,12 @@ const Home = () => {
                 />
               </div>
             </Col>
-          </Row>
+            </Row>
+          </Container>
         </Container>
-      </Container>
-      <About />
-    </section>
+        <About />
+      </section>
+    </>
   );
 }
 

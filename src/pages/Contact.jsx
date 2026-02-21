@@ -3,10 +3,16 @@ import { Container } from "react-bootstrap";
 import Particle from '../components/Particle';
 import ContactForm from '../components/Contact/Contact';
 import Social from '../components/Contact/Social';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   return (
     <div className="contact-page">
+      <SEO
+        title="Contact"
+        path="/contact"
+        description="Get in touch with Jan Mark Pereda for project inquiries, freelance work, and collaboration opportunities."
+      />
       <Particle />
       <div className="contact-hero-section">
         <Container>

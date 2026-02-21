@@ -20,7 +20,9 @@ const Footer = () => {
         <Row className="footer-content">
           <Col lg={3} md={6} className="footer-left">
             <div className="footer-logo">
-              <div className="footer-logo-icon">J</div>
+              <div className="footer-logo-icon">
+                <img src={`${process.env.PUBLIC_URL}/Logo.png`} alt="Jan Mark logo" className="footer-logo-image" />
+              </div>
             </div>
             <div className="footer-copyright-links">
               <span className="footer-copyright">Copyright © {year} Jan Mark Pereda</span>

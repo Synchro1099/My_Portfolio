@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CgWebsite } from "react-icons/cg";
-import { BsGithub } from "react-icons/bs";
 
 const ProjectCard = (props) => {
   const maxLength = 150; // Adjust as needed
@@ -53,21 +52,6 @@ const ProjectCard = (props) => {
           </Card.Text>
           
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-            <Button
-              variant="primary"
-              href={props.ghLink}
-              target="_blank"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                flex: 1,
-                marginRight: props.demoLink ? '10px' : '0',
-              }}
-            >
-              <BsGithub /> &nbsp; GitHub
-            </Button>
             {props.demoLink && (
               <Button
                 variant="primary"
@@ -78,7 +62,7 @@ const ProjectCard = (props) => {
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
-                  flex: 1,
+                  width: "100%",
                 }}
               >
                 <CgWebsite /> &nbsp; Demo

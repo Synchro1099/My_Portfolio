@@ -13,6 +13,7 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.3.1",
     "react-github-calendar": "^3.4.0",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^4.7.1",
     "react-markdown": "^8.0.5",
     "react-parallax-tilt": "^1.7.90",
@@ -48,6 +49,6 @@
     ]
   },
   "devDependencies": {
-    "pdfjs-dist": "^5.4.449"
+    "pdfjs-dist": "^5.4.530"
   }
 }
