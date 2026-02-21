@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { AiOutlineDownload, AiOutlineZoomIn, AiOutlineClose } from "react-icons/ai";
 
 import Particle from '../components/Particle';
-import pdf from "../assets/Jan Mark Pereda updated.pdf";
+import pdf from "../assets/Jan Mark Pereda CV.pdf";
 import SEO from "../components/SEO";
 
 import { Document, Page, pdfjs } from "react-pdf";
@@ -51,7 +51,7 @@ const Resume = () => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = pdf;
-    link.download = 'Jan Mark Pereda updated.pdf';
+    link.download = 'Jan Mark Pereda CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
