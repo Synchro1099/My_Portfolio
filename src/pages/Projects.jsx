@@ -49,6 +49,15 @@ const Projects = () => {
               demoLink="https://www.charliesbarber.shop/#"
             />
           </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath="https://i.ibb.co/placeholder.png"
+              title="Society22"
+              description="A modern web application showcasing contemporary design and user experience principles. Built with TypeScript and Vite for optimal performance and developer experience. Features a responsive interface and smooth interactions."
+              demoLink="https://society22.vercel.app/"
+            />
+          </Col>
           </Row>
         </Container>
       </Container>

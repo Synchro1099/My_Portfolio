@@ -5,15 +5,13 @@ import Modal from "react-bootstrap/Modal";
 import { CgWebsite } from "react-icons/cg";
 
 const ProjectCard = (props) => {
-  const maxLength = 150; // Adjust as needed
+  const maxLength = 150;
   const [showModal, setShowModal] = useState(false);
 
-  // Function to toggle modal
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
-  // Function to truncate description
   const truncateText = (text) => {
     if (text.length <= maxLength) {
       return text;
@@ -81,8 +79,6 @@ const ProjectCard = (props) => {
           <strong>Description:</strong> {props.description}
           <br />
           <br />
-         
-        
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={toggleModal}>
