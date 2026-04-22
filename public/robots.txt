@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-Sitemap: https://jan-portfolio.vercel.app/sitemap.xml
+Sitemap: https://society22.club/sitemap.xml

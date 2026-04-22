@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://jan-portfolio.vercel.app";
+const SITE_URL = "https://society22.club";
 const DEFAULT_TITLE = "Jan Mark Pereda";
 const DEFAULT_DESCRIPTION = "Portfolio website of Jan Mark Pereda featuring projects, skills, resume, and contact details.";
 const DEFAULT_IMAGE = `${SITE_URL}/Logo.png`;

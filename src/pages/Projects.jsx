@@ -54,8 +54,8 @@ const Projects = () => {
             <ProjectCard
               imgPath="https://i.ibb.co/placeholder.png"
               title="Society22"
-              description="A modern web application showcasing contemporary design and user experience principles. Built with TypeScript and Vite for optimal performance and developer experience. Features a responsive interface and smooth interactions."
-              demoLink="https://society22.vercel.app/"
+              description="Built a separated React frontend and Laravel backend with a custom CMS in Filament PHP, then consolidated the deployment into a single Laravel-served setup by centralizing assets, simplifying Nginx routing, and resolving build and permission issues."
+              demoLink="https://society22.club/"
             />
           </Col>
           </Row>
