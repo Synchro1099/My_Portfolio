@@ -1,93 +1,80 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
-import {
-  DiJavascript1,
-  DiReact,
-  DiNodejs,
-  DiGit,
-} from "react-icons/di";
-import {
-  SiMongodb,
-  SiHtml5,
-  SiPython,
-  SiGithub,
-  SiExpress,
-  SiCss3,
-  SiDart,
-  SiFlutter,
-  SiTailwindcss,
-  SiPhp,
-  SiMysql,
-  SiNpm,
-  SiBootstrap,
-  SiJava,
-  SiReact
-} from "react-icons/si";
+import { Row, Col } from "react-bootstrap";
 
 const Techstack = () => {
+  const sections = [
+    {
+      title: "Programming Languages",
+      items: ["JavaScript", "TypeScript", "PHP", "Python", "SQL", "Java", "C#"],
+      note: "Strong understanding of programming fundamentals, allowing me to adapt quickly to new languages, frameworks, and technologies."
+    },
+    {
+      title: "Frontend Development",
+      items: [
+        "React.js",
+        "Next.js",
+        "Angular",
+        "Vue.js",
+        "JavaScript (ES6+)",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Bootstrap",
+        "Responsive Web Design",
+        "Component-Based Architecture",
+        "UI Development"
+      ]
+    },
+    {
+      title: "Backend Development",
+      items: [
+        "Node.js",
+        "Express.js",
+        "PHP",
+        "Laravel",
+        "Python",
+        "REST APIs",
+        "API Integration",
+        "Authentication Systems",
+        "Backend Development",
+        "Server-Side Applications"
+      ]
+    },
+    {
+      title: "Database & Backend Services",
+      items: [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Firebase",
+        "Supabase",
+        "Database Design",
+        "Data Modeling",
+        "Query Optimization"
+      ]
+    }
+  ];
+
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiHtml5 />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiCss3 />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiJavascript1 />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiNodejs />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <DiReact />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiExpress />
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <SiMongodb />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiFlutter />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiDart />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiPython />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <SiGithub />
-      </Col>
-
-      <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
-      </Col>
-      <Col xs={4} md={2} className="tech-icons">
-              <SiTailwindcss />
-            </Col>
-      <Col xs={4} md={2} className="tech-icons">
-              <SiPhp />
-       </Col>   
-       <Col xs={4} md={2} className="tech-icons">
-               <SiMysql />
-        </Col>   
-        <Col xs={4} md={2} className="tech-icons">
-               <SiNpm />
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-               <SiBootstrap />
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-               <SiJava />
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-               <SiReact />
-        </Col>
-    </Row>
+    <div className="skill-categories-grid">
+      {sections.map((section) => (
+        <div key={section.title} className="skill-category-card">
+          <h2 className="skill-category-title">{section.title}</h2>
+          <Row className="g-2">
+            {section.items.map((item) => (
+              <Col xs={6} md={4} key={item}>
+                <span className="skill-pill">{item}</span>
+              </Col>
+            ))}
+          </Row>
+          {section.note && (
+            <p className="skill-category-note">{section.note}</p>
+          )}
+        </div>
+      ))}
+    </div>
   );
-}
+};
 
 export default Techstack;

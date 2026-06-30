@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import { AiOutlineDownload, AiOutlineZoomIn, AiOutlineClose } from "react-icons/ai";
 
 import Particle from '../components/Particle';
-import pdf from "../assets/Jan Mark Pereda CV.pdf";
+import pdf from "../assets/resume.pdf";
 import SEO from "../components/SEO";
 
 import { Document, Page, pdfjs } from "react-pdf";
@@ -51,7 +52,7 @@ const Resume = () => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = pdf;
-    link.download = 'Jan Mark Pereda CV.pdf';
+    link.download = 'resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -84,7 +85,7 @@ const Resume = () => {
       <SEO
         title="Resume"
         path="/resume"
-        description="View and download Jan Mark Pereda's resume, professional experience, and technical background."
+        description="View Jan Mark Pereda's Full Stack Developer resume with project outcomes, technical strengths, and professional experience."
       />
       <Container fluid className="resume-section">
         <Particle />
@@ -103,8 +104,8 @@ const Resume = () => {
                 </h1>
 
                 <p className="hero-description">
-                  A comprehensive overview of my professional journey, skills, and achievements. 
-                  Download the complete document to learn more about my background and expertise.
+                  This resume highlights the systems I have built, the teams I have supported,
+                  and the measurable outcomes I have delivered across e-commerce and education platforms.
                 </p>
 
                 <div className="hero-buttons">
@@ -115,7 +116,11 @@ const Resume = () => {
                     <AiOutlineDownload style={{ marginRight: "8px" }} />
                     Download Resume
                   </Button>
+                  <Button as={Link} to="/contact" className="btn-secondary-hero">
+                    Contact Me
+                  </Button>
                 </div>
+                <p className="resume-cta-note">Available for full-time opportunities and project-based collaboration.</p>
               </Col>
 
               <Col lg={6} className="hero-image-section">

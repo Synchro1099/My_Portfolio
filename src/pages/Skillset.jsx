@@ -22,11 +22,14 @@ const Skillset = () => {
           <h1 className="project-heading">
             Professional <strong className="yellow">Skillset </strong>
           </h1>
+          <p className="skillset-intro">
+            I adapt to project requirements and choose the right tools to build scalable digital solutions across frontend, backend, databases, cloud, and growth-focused delivery.
+          </p>
 
           <Techstack />
 
           <h1 className="project-heading">
-            <strong className="yellow">Tools</strong> I use
+            <strong className="yellow">Tools</strong> & Cloud Workflow
           </h1>
           <Toolstack />
 

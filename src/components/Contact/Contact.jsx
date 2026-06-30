@@ -21,37 +21,27 @@ const Contact = () => {
 
     const sendEmail = async (e) => {
         e.preventDefault();
-        
-         emailjs.sendForm('service_em1z6kn', 'template_cjshpvu', form.current, 'bFrw2BZPiL6alq3jP')
 
         if (!formData.from_name || !formData.reply_to || !formData.message) {
             setNotDone(true);
-        } else {
-            const formDataObj = new FormData(form.current);
-            formDataObj.append('service_id', 'service_em1z6kn');
-            formDataObj.append('template_id', 'template_30qsoxg');
-            formDataObj.append('user_id', 'bFrw2BZPiL6alq3jP');
+            return;
+        }
 
-            try {
-                const response = await fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
-                    method: 'POST',
-                    body: formDataObj,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+        try {
+            await emailjs.sendForm(
+                'service_em1z6kn',
+                'template_cjshpvu',
+                form.current,
+                'bFrw2BZPiL6alq3jP'
+            );
 
-                if (response.ok) {
-                    setDone(true);
-                    setNotDone(false);
-                    setFormData({ from_name: '', reply_to: '', message: '' });
-                } else {
-                    setNotDone(true);
-                }
-            } catch (error) {
-                console.error('Error sending email:', error);
-                setNotDone(true);
-            }
+            setDone(true);
+            setNotDone(false);
+            setFormData({ from_name: '', reply_to: '', message: '' });
+        } catch (error) {
+            console.error('Error sending email:', error);
+            setNotDone(true);
+            setDone(false);
         }
     };
 

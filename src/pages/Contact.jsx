@@ -11,7 +11,7 @@ const Contact = () => {
       <SEO
         title="Contact"
         path="/contact"
-        description="Get in touch with Jan Mark Pereda for project inquiries, freelance work, and collaboration opportunities."
+        description="Contact Jan Mark Pereda for Full Stack Developer roles, freelance web projects, and technical collaboration opportunities."
       />
       <Particle />
       <div className="contact-hero-section">
@@ -19,11 +19,11 @@ const Contact = () => {
           <div className="contact-hero-content">
             <div className="contact-hero-badge">CONTACT</div>
             <h1 className="contact-hero-title">
-              Let's <span className="contact-hero-accent">Work Together</span>
+              Let's <span className="contact-hero-accent">Build Something Valuable</span>
             </h1>
             <p className="contact-hero-description">
-              Have a project in mind or want to discuss opportunities? 
-              I'd love to hear from you. Send me a message and I'll respond as soon as possible.
+              Open to Full Stack Developer opportunities, consulting engagements, and product-focused collaborations.
+              Share your goals, timeline, and scope, and I will get back to you as soon as possible.
             </p>
           </div>
         </Container>

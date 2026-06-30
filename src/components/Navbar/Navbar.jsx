@@ -24,6 +24,7 @@ function NavBar() {
         
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
+          aria-label="Toggle navigation menu"
           className="navbar-toggler-modern"
           onClick={() => {
             updateExpanded(expand ? false : "expanded");
@@ -41,6 +42,7 @@ function NavBar() {
                 as={Link} 
                 to="/" 
                 className={location.pathname === "/" ? "nav-link active" : "nav-link"}
+                aria-current={location.pathname === "/" ? "page" : undefined}
                 onClick={() => updateExpanded(false)}
               >
                 Home
@@ -52,6 +54,7 @@ function NavBar() {
                 as={Link}
                 to="/skillset"
                 className={location.pathname === "/skillset" ? "nav-link active" : "nav-link"}
+                aria-current={location.pathname === "/skillset" ? "page" : undefined}
                 onClick={() => updateExpanded(false)}
               >
                 Skillset
@@ -63,6 +66,7 @@ function NavBar() {
                 as={Link}
                 to="/project"
                 className={location.pathname === "/project" ? "nav-link active" : "nav-link"}
+                aria-current={location.pathname === "/project" ? "page" : undefined}
                 onClick={() => updateExpanded(false)}
               >
                 Projects
@@ -74,6 +78,7 @@ function NavBar() {
                 as={Link}
                 to="/resume"
                 className={location.pathname === "/resume" ? "nav-link active" : "nav-link"}
+                aria-current={location.pathname === "/resume" ? "page" : undefined}
                 onClick={() => updateExpanded(false)}
               >
                 Resume
@@ -82,6 +87,14 @@ function NavBar() {
           </Nav>
           
           <div className="navbar-button-container">
+            <Button
+              as={Link}
+              to="/resume"
+              className="resume-button"
+              onClick={() => updateExpanded(false)}
+            >
+              Resume
+            </Button>
             <Button 
               as={Link} 
               to="/contact" 

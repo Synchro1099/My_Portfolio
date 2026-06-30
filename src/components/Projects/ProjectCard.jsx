@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { CgWebsite } from "react-icons/cg";
 
 const ProjectCard = (props) => {
-  const maxLength = 150;
+  const maxLength = 155;
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -13,11 +13,16 @@ const ProjectCard = (props) => {
   };
 
   const truncateText = (text) => {
+    if (!text) {
+      return "";
+    }
     if (text.length <= maxLength) {
       return text;
     }
     return `${text.substring(0, maxLength)}...`;
   };
+
+  const summaryText = props.businessProblem || props.overview || props.description || "";
 
   return (
     <>
@@ -25,7 +30,9 @@ const ProjectCard = (props) => {
         <Card.Img
           variant="top"
           src={props.imgPath}
-          alt="project-img"
+          alt={`${props.title} project preview`}
+          loading="lazy"
+          decoding="async"
           style={{
             height: "200px",
             objectFit: "cover",
@@ -33,35 +40,72 @@ const ProjectCard = (props) => {
           }}
         />
         <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
-          <Card.Text style={{ textAlign: "justify", fontSize: "15px" }}>
-            <strong>Description:</strong>{" "}
-            {truncateText(props.description)}
-            {props.description.length > maxLength && (
+          <Card.Title className="project-card-title">{props.title}</Card.Title>
+
+          <Card.Text className="project-summary-text">
+            {truncateText(summaryText)}
+            {summaryText.length > maxLength && (
               <Button
                 variant="link"
                 size="sm"
-                style={{ padding: "0", marginLeft: "5px" }}
+                className="project-learn-more"
+                aria-label={`Read more about ${props.title}`}
                 onClick={toggleModal}
               >
                 Learn More
               </Button>
             )}
           </Card.Text>
+
+          {props.businessProblem && (
+            <p className="project-meta-line">
+              <span className="project-meta-label">Problem:</span> {props.businessProblem}
+            </p>
+          )}
+
+          {props.solutionBuilt && (
+            <p className="project-meta-line">
+              <span className="project-meta-label">Solution:</span> {props.solutionBuilt}
+            </p>
+          )}
+
+          {props.contribution && (
+            <p className="project-meta-line">
+              <span className="project-meta-label">My Contribution:</span> {props.contribution}
+            </p>
+          )}
+
+          {props.techStack && props.techStack.length > 0 && (
+            <div className="project-tech-wrap">
+              <span className="project-meta-label">Technology:</span>
+              <div className="project-tech-list">
+                {props.techStack.map((tech) => (
+                  <span className="project-tech-chip" key={tech}>{tech}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {props.outcome && props.outcome.length > 0 && (
+            <div className="project-impact-wrap">
+              <span className="project-meta-label">Outcome:</span>
+              <ul className="project-impact-list">
+                {props.outcome.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+          <div className="project-actions-row">
             {props.demoLink && (
               <Button
                 variant="primary"
                 href={props.demoLink}
                 target="_blank"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  width: "100%",
-                }}
+                rel="noopener noreferrer"
+                className="project-demo-btn"
+                aria-label={`Open live demo for ${props.title}`}
               >
                 <CgWebsite /> &nbsp; Demo
               </Button>
@@ -76,7 +120,48 @@ const ProjectCard = (props) => {
           <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <strong>Description:</strong> {props.description}
+          {props.businessProblem && (
+            <>
+              <strong>Problem:</strong> {props.businessProblem}
+            </>
+          )}
+
+          {props.solutionBuilt && (
+            <>
+              <br />
+              <br />
+              <strong>Solution:</strong> {props.solutionBuilt}
+            </>
+          )}
+
+          {props.contribution && (
+            <>
+              <br />
+              <br />
+              <strong>My Contribution:</strong> {props.contribution}
+            </>
+          )}
+
+          {props.techStack && props.techStack.length > 0 && (
+            <>
+              <br />
+              <br />
+              <strong>Technology:</strong> {props.techStack.join(", ")}
+            </>
+          )}
+
+          {props.outcome && props.outcome.length > 0 && (
+            <>
+              <br />
+              <br />
+              <strong>Outcome:</strong>
+              <ul>
+                {props.outcome.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </>
+          )}
           <br />
           <br />
         </Modal.Body>

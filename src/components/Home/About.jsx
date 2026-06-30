@@ -15,32 +15,43 @@ const About = () => {
       <Container>
         <Row>
           <Col md={8} className="home-about-description">
-            <h1 style={{ fontSize: "2.6em" }}>
+            <h2 style={{ fontSize: "2.6em" }}>
                <span className="yellow"> About ME </span> 
-            </h1>
+            </h2>
                <p className="home-about-body">
-                    Full Stack Web Developer from <span className="yellow">Angeles City, Pampanga</span>, with a strong foundation built at <span className="yellow">Holy Angel University</span>. 
+                    I am a Full Stack Web Developer focused on building practical, scalable, and user-friendly web applications.
                     <br />
                     <br />
-                    I specialize in creating high-performance, user-focused digital solutions, combining clean design with robust functionality. I <b className="yellow">engineer solutions, innovate, and deliver impactful experiences</b> that drive results. 
+                    My experience includes developing business systems, digital platforms, e-commerce solutions, dashboards, and custom applications.
                     <br />
                     <br />
-                    <b className="yellow">Let’s build something amazing together.</b>
+                    I enjoy understanding problems, designing effective solutions, and using the right technologies to create reliable products.
                   </p>
 
-
+              <div className="experience-summary-card">
+                <h2 className="experience-title">Professional Experience</h2>
+                <p className="experience-summary-text">
+                  Experienced in building web applications and digital solutions for different industries. I have worked on production systems involving business operations, online platforms, integrations, automation, and performance optimization.
+                </p>
+                <ul className="experience-summary-list">
+                  <li>Built scalable web applications and internal business systems.</li>
+                  <li>Developed platforms with frontend, backend, database, and API integrations.</li>
+                  <li>Improved workflows through automation and optimized solutions.</li>
+                  <li>Worked with different technologies and adapted to project requirements.</li>
+                </ul>
+              </div>
 
 
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
-              <img src={ProfilePic} className="img-fluid" alt="avatar" />
+              <img src={ProfilePic} className="img-fluid" alt="Portrait of Jan Mark Pereda" loading="lazy" decoding="async" />
             </Tilt>
           </Col>
         </Row>
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>FIND ME ON</h1>
+            <h3>FIND ME ON</h3>
             <p>
               Feel free to <span className="yellow">connect</span> with me.
             </p>

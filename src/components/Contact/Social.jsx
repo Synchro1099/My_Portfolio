@@ -14,7 +14,7 @@ const Social = () => {
     <Row>
               <Col md={12} className="contact-social">
                 <div className='contact-text'>
-                <h1>FIND ME ON</h1>
+                <h2>FIND ME ON</h2>
                 <p>
                 Please don't hesitate to reach out to me and <span className="yellow">connect.</span>
                 </p>

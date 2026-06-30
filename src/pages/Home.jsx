@@ -14,7 +14,7 @@ const Home = () => {
       <SEO
         title="Home"
         path="/"
-        description="Explore Jan Mark Pereda's portfolio featuring full-stack web development, UX/UI design, and real-world project work."
+        description="Jan Mark Pereda is a Full Stack Web Developer building scalable web applications, business systems, and performance-focused digital products."
       />
       <section>
         <Container fluid className="home-section" id="home">
@@ -28,7 +28,7 @@ const Home = () => {
               
               <h1 className="hero-name">
                 <span className="hero-name-line">I'm <span className="main-name">Jan Mark Pereda</span></span>
-                <span className="hero-name-subtitle">UX/UI Designer & Full-Stack Developer</span>
+                <span className="hero-name-subtitle">Full Stack Web Developer</span>
               </h1>
 
               <div className="hero-typewriter">
@@ -37,33 +37,27 @@ const Home = () => {
 
               <div className="hero-description-wrapper">
                 <p className="hero-description">
-                    I'm a passionate Full Stack Web Developer with a deep love for crafting
-                    immersive web experiences. With <strong>3 years of experience</strong> in the
-                    industry, I specialize in building high-performance, scalable applications
-                    that seamlessly blend technology with exceptional user experience.
+                    Full Stack Web Developer building scalable web applications and digital solutions that solve real business problems.
                   </p>
 
                   <p className="hero-description-secondary">
-                    Skilled in <strong>React.js</strong>, <strong>Node.js</strong>, and
-                    <strong> MongoDB</strong>, I develop end-to-end solutions that are both
-                    intuitive and powerful. From concept to deployment, I turn ideas into
-                    dynamic, user-focused digital products.
+                    I develop modern applications across frontend, backend, databases, APIs, and cloud environments. I focus on creating reliable, user-focused solutions that improve workflows, automate processes, and help businesses grow.
                   </p>
 
               </div>
 
               <div className="hero-stats">
                 <div className="hero-stat-item">
-                  <div className="hero-stat-number">3+</div>
-                  <div className="hero-stat-label">Years Experience</div>
+                  <div className="hero-stat-number">10,000+</div>
+                  <div className="hero-stat-label">Learners Supported</div>
                 </div>
                 <div className="hero-stat-item">
-                  <div className="hero-stat-number">2</div>
-                  <div className="hero-stat-label">Projects Delivered</div>
+                  <div className="hero-stat-number">70%</div>
+                  <div className="hero-stat-label">Stock Error Reduction</div>
                 </div>
                 <div className="hero-stat-item">
-                  <div className="hero-stat-number">100%</div>
-                  <div className="hero-stat-label">Client Satisfaction</div>
+                  <div className="hero-stat-number">99.9%</div>
+                  <div className="hero-stat-label">Platform Uptime</div>
                 </div>
               </div>
 
@@ -73,7 +67,7 @@ const Home = () => {
                   to="/contact" 
                   className="btn-primary-hero"
                 >
-                  Let's Work Together
+                  Let's Build Your Next System
                   <AiOutlineArrowRight style={{ marginLeft: "8px" }} />
                 </Button>
                 <Button 
@@ -85,6 +79,9 @@ const Home = () => {
                   View Resume
                 </Button>
               </div>
+              <p className="hero-final-message">
+                I don't just write code. I understand problems, choose the right technology, and build solutions that create value.
+              </p>
             </Col>
 
             <Col lg={6} className="hero-image-section">
@@ -94,6 +91,8 @@ const Home = () => {
                   src={homeLogo}
                   alt="Jan Mark Pereda"
                   className="hero-image"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
             </Col>
