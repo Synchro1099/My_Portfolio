@@ -3,13 +3,34 @@ import { Row, Col } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import './Contact.css';
 import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_eegilxo';
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_cjshpvu';
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'bFrw2BZPiL6alq3jP';
+
+const formatCurrentDateTime = (date) => {
+    const parts = new Intl.DateTimeFormat('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+    }).formatToParts(date);
+
+    const getPart = (type) => parts.find((part) => part.type === type)?.value || '';
+    return `${getPart('month')} ${getPart('day')}, ${getPart('year')}, ${getPart('hour')}:${getPart('minute')} ${getPart('dayPeriod')}`;
+};
+
 const Contact = () => {
     const form = useRef();
     const [done, setDone] = useState(false);
     const [notDone, setNotDone] = useState(false);
+    const [sending, setSending] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [formData, setFormData] = useState({
-        from_name: '',
-        reply_to: '',
+        user_name: '',
+        user_email: '',
+        title: 'New portfolio contact form message',
         message: ''
     });
 
@@ -17,31 +38,71 @@ const Contact = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         setDone(false);
         setNotDone(false);
+        setErrorMessage('');
     };
 
     const sendEmail = async (e) => {
         e.preventDefault();
 
-        if (!formData.from_name || !formData.reply_to || !formData.message) {
+        const submittedValues = new FormData(form.current);
+        const userName = (submittedValues.get('user_name') || '').toString().trim();
+        const userEmail = (submittedValues.get('user_email') || '').toString().trim();
+        const title = (submittedValues.get('title') || '').toString().trim();
+        const message = (submittedValues.get('message') || '').toString().trim();
+
+        if (!userName || !userEmail || !message) {
             setNotDone(true);
+            setErrorMessage('');
             return;
         }
 
+        setSending(true);
+
         try {
-            await emailjs.sendForm(
-                'service_em1z6kn',
-                'template_cjshpvu',
-                form.current,
-                'bFrw2BZPiL6alq3jP'
+            const time = formatCurrentDateTime(new Date());
+
+            console.log({
+                user_name: userName,
+                user_email: userEmail,
+                title: title || 'New portfolio contact form message',
+                message,
+                time,
+            });
+
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                {
+                    user_name: userName,
+                    user_email: userEmail,
+                    title: title || 'New portfolio contact form message',
+                    message,
+                    time,
+                },
+                EMAILJS_PUBLIC_KEY
             );
 
             setDone(true);
             setNotDone(false);
-            setFormData({ from_name: '', reply_to: '', message: '' });
+            setErrorMessage('');
+            setFormData({
+                user_name: '',
+                user_email: '',
+                title: 'New portfolio contact form message',
+                message: ''
+            });
         } catch (error) {
             console.error('Error sending email:', error);
-            setNotDone(true);
+            setNotDone(false);
             setDone(false);
+            const emailjsError = error?.text || error?.message || '';
+            if (emailjsError.toLowerCase().includes('recipient') || emailjsError.toLowerCase().includes('empty')) {
+                setErrorMessage('EmailJS template recipient is still empty. Set the template To email field to peredajanmark@gmail.com in the EmailJS dashboard.');
+            } else {
+                setErrorMessage(emailjsError || 'Email delivery failed. Check the EmailJS service ID, template variables, and recipient address.');
+            }
+        } finally {
+            setSending(false);
         }
     };
 
@@ -52,29 +113,29 @@ const Contact = () => {
                     <div className="contact-form-container">
                         <form ref={form} onSubmit={sendEmail} className="professional-contact-form">
                             <div className="form-group">
-                                <label htmlFor="from_name" className="form-label">Name</label>
+                                <label htmlFor="user_name" className="form-label">Name</label>
                                 <input 
                                     type="text" 
-                                    id="from_name"
-                                    name="from_name" 
+                                    id="user_name"
+                                    name="user_name" 
                                     className="form-input"  
                                     placeholder="Your name" 
                                     onChange={handleChange} 
-                                    value={formData.from_name}
+                                    value={formData.user_name}
                                     required
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="reply_to" className="form-label">Email</label>
+                                <label htmlFor="user_email" className="form-label">Email</label>
                                 <input 
                                     type="email" 
-                                    id="reply_to"
-                                    name="reply_to" 
+                                    id="user_email"
+                                    name="user_email" 
                                     className="form-input" 
                                     placeholder="your.email@example.com" 
                                     onChange={handleChange} 
-                                    value={formData.reply_to}
+                                    value={formData.user_email}
                                     required
                                 />
                             </div>
@@ -93,9 +154,17 @@ const Contact = () => {
                                 />
                             </div>
 
+                            <input type="hidden" name="title" value={formData.title} />
+
                             {notDone && (
                                 <div className="form-error">
                                     Please fill in all the required fields
+                                </div>
+                            )}
+
+                            {errorMessage && (
+                                <div className="form-error">
+                                    {errorMessage}
                                 </div>
                             )}
 
@@ -108,9 +177,9 @@ const Contact = () => {
                             <Button 
                                 type="submit" 
                                 className="contact-submit-btn" 
-                                disabled={done}
+                                disabled={done || sending}
                             >
-                                {done ? 'Message Sent ✓' : 'Send Message'}
+                                {sending ? 'Sending...' : done ? 'Message Sent ✓' : 'Send Message'}
                             </Button>
                         </form>
                     </div>
