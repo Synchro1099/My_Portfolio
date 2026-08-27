@@ -12,41 +12,43 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
 
+// ResumeContent removed to avoid duplicating full HTML inside the modal.
+
 const Resume = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const DEFAULT_ZOOM = 1.25;
   const [width, setWidth] = useState(window.innerWidth);
   const [numPages, setNumPages] = useState(null);
+  const [pdfError, setPdfError] = useState(null);
   const [scale, setScale] = useState(1.0);
-  const [showModal, setShowModal] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(DEFAULT_ZOOM);
 
   useEffect(() => {
     const handleResize = () => {
       const newWidth = window.innerWidth;
       setWidth(newWidth);
-      
-      // Calculate A4 scale based on viewport width
-      // A4 width: 210mm = 794px at 96 DPI
-      // Leave some padding (40px on each side)
+
       const maxWidth = newWidth - 80;
-      const a4Width = 794; // A4 width in pixels at 96 DPI
+      const a4Width = 794;
       const calculatedScale = Math.min(maxWidth / a4Width, 1.2);
       setScale(calculatedScale);
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
+  const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages);
+
+  const onDocumentLoadError = (error) => {
+    console.error('PDF load error', error);
+    setPdfError(error?.message || String(error));
   };
 
   const handleDownload = () => {
@@ -58,27 +60,8 @@ const Resume = () => {
     document.body.removeChild(link);
   };
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-    setZoomLevel(DEFAULT_ZOOM);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setZoomLevel(DEFAULT_ZOOM);
-  };
-
-  const handleZoomIn = () => {
-    setZoomLevel(prev => Math.min(prev + 0.25, 3.0));
-  };
-
-  const handleZoomOut = () => {
-    setZoomLevel(prev => Math.max(prev - 0.25, 0.5));
-  };
-
-  const handleResetZoom = () => {
-    setZoomLevel(DEFAULT_ZOOM);
-  };
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <div>
@@ -98,15 +81,12 @@ const Resume = () => {
                 <div className="hero-greeting">
                   <span className="greeting-text">My Resume</span>
                 </div>
-                
+
                 <h1 className="hero-name">
-                  <span className="main-name">Professional Experience</span>
+                  <span className="main-name">Jan Mark Pereda — Full Stack Developer</span>
                 </h1>
 
-                <p className="hero-description">
-                  This resume highlights the systems I have built, the teams I have supported,
-                  and the measurable outcomes I have delivered across e-commerce and education platforms.
-                </p>
+                <p className="hero-description">I build clean, scalable, and user-friendly web applications. I focus on responsive interfaces and practical digital solutions. Passionate about badminton and teamwork.</p>
 
                 <div className="hero-buttons">
                   <Button 
@@ -129,34 +109,43 @@ const Resume = () => {
                   <div className="resume-pdf-preview" onClick={handleOpenModal}>
                     <div className="resume-preview-overlay">
                       <AiOutlineZoomIn className="zoom-icon" />
-                      <span className="zoom-text">Click to view full size</span>
+                      <span className="zoom-text">Click to view full resume</span>
                     </div>
-                    <Document
-                      file={pdf}
-                      onLoadSuccess={onDocumentLoadSuccess}
-                      className="resume-document-preview"
-                      loading={
-                        <div className="pdf-loading">
-                          <p>Loading resume...</p>
+                      {pdfError ? (
+                        <div style={{padding:20}}>
+                          <p style={{color:'#234C6A'}}>Unable to preview PDF. <button onClick={handleDownload}>Download PDF</button></p>
+                          <p style={{color:'#b00'}}>Error: {String(pdfError)}</p>
                         </div>
-                      }
-                    >
-                      {Array.from(new Array(numPages), (el, index) => (
-                        <div key={`page-wrapper-${index + 1}`} className="a4-page-wrapper-preview">
-                          <Page
-                            key={`page_${index + 1}`}
-                            pageNumber={index + 1}
-                            scale={scale * 0.55}
-                            className="a4-page"
-                          />
-                        </div>
-                      ))}
-                    </Document>
+                      ) : (
+                        <Document
+                          file={pdf}
+                          onLoadSuccess={onDocumentLoadSuccess}
+                          onLoadError={onDocumentLoadError}
+                          onSourceError={onDocumentLoadError}
+                          className="resume-document-preview"
+                          loading={
+                            <div className="pdf-loading">
+                              <p>Loading resume...</p>
+                            </div>
+                          }
+                        >
+                          {numPages > 0 && Array.from(new Array(numPages), (el, index) => (
+                            <div key={`page-wrapper-${index + 1}`} className="a4-page-wrapper-preview" onClick={handleOpenModal}>
+                              <Page
+                                key={`page_${index + 1}`}
+                                pageNumber={index + 1}
+                                scale={scale * 0.55}
+                                className="a4-page"
+                              />
+                            </div>
+                          ))}
+                        </Document>
+                      )}
                   </div>
                 </div>
               </Col>
 
-            {/* Full View Modal */}
+            {/* Full View Modal showing resume HTML */}
             <Modal 
               show={showModal} 
               onHide={handleCloseModal}
@@ -167,66 +156,47 @@ const Resume = () => {
               <Modal.Header className="resume-modal-header">
                 <div className="resume-modal-title">Resume - Full View</div>
                 <div className="resume-modal-controls">
-                  <Button 
-                    variant="outline-secondary" 
-                    size="sm"
-                    onClick={handleZoomOut}
-                    className="zoom-btn"
-                    disabled={zoomLevel <= 0.5}
-                  >
-                    −
-                  </Button>
-                  <span className="zoom-level">{Math.round(zoomLevel * 100)}%</span>
-                  <Button 
-                    variant="outline-secondary" 
-                    size="sm"
-                    onClick={handleZoomIn}
-                    className="zoom-btn"
-                    disabled={zoomLevel >= 3.0}
-                  >
-                    +
-                  </Button>
-                  <Button 
-                    variant="outline-secondary" 
-                    size="sm"
-                    onClick={handleResetZoom}
-                    className="zoom-btn"
-                  >
-                    Reset
-                  </Button>
-                  <Button 
-                    variant="outline-secondary" 
-                    size="sm"
-                    onClick={handleCloseModal}
-                    className="close-btn"
-                  >
-                    <AiOutlineClose />
-                  </Button>
+                  <Button variant="outline-secondary" size="sm" onClick={() => setZoomLevel(prev => Math.max(prev - 0.25, 0.5))}>−</Button>
+                  <span className="zoom-level" style={{padding:'0 8px'}}>{Math.round(zoomLevel * 100)}%</span>
+                  <Button variant="outline-secondary" size="sm" onClick={() => setZoomLevel(prev => Math.min(prev + 0.25, 3.0))}>+</Button>
+                  <Button variant="outline-secondary" size="sm" onClick={() => setZoomLevel(DEFAULT_ZOOM)}>Reset</Button>
+                  <Button variant="outline-secondary" size="sm" onClick={handleDownload}>Download PDF</Button>
+                  <Button variant="outline-secondary" size="sm" onClick={handleCloseModal} className="close-btn"><AiOutlineClose /></Button>
                 </div>
               </Modal.Header>
               <Modal.Body className="resume-modal-body">
-                <div className="resume-modal-content" style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top center' }}>
-                  <Document
-                    file={pdf}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                    className="resume-document-full"
-                    loading={
-                      <div className="pdf-loading">
-                        <p>Loading resume...</p>
-                      </div>
-                    }
-                  >
-                    {Array.from(new Array(numPages), (el, index) => (
-                      <div key={`page-full-${index + 1}`} className="a4-page-wrapper-full">
-                        <Page
-                          key={`page_${index + 1}`}
-                          pageNumber={index + 1}
-                          scale={width > 786 ? 1.5 : 1.0}
-                          className="a4-page"
-                        />
-                      </div>
-                    ))}
-                  </Document>
+                <div className="resume-modal-content" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                  {pdfError ? (
+                    <div style={{padding:20}}>
+                      <p style={{color:'#234C6A'}}>Unable to preview PDF in modal.</p>
+                      <p style={{color:'#b00'}}>Error: {String(pdfError)}</p>
+                      <button onClick={handleDownload}>Download PDF</button>
+                    </div>
+                  ) : (
+                    <Document
+                      file={pdf}
+                      onLoadSuccess={onDocumentLoadSuccess}
+                      onLoadError={onDocumentLoadError}
+                      onSourceError={onDocumentLoadError}
+                      className="resume-document-full"
+                      loading={
+                        <div className="pdf-loading">
+                          <p>Loading resume...</p>
+                        </div>
+                      }
+                    >
+                      {numPages > 0 && Array.from(new Array(numPages), (el, index) => (
+                        <div key={`page-full-${index + 1}`} className="a4-page-wrapper-full">
+                          <Page
+                            key={`page_${index + 1}`}
+                            pageNumber={index + 1}
+                            scale={(width > 786 ? 1.5 : 1.0) * zoomLevel}
+                            className="a4-page"
+                          />
+                        </div>
+                      ))}
+                    </Document>
+                  )}
                 </div>
               </Modal.Body>
             </Modal>

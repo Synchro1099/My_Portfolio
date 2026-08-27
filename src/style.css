@@ -1721,6 +1721,31 @@ html {
     gap: 0.75rem;
   }
 
+  /* Make header controls more visible on blue background */
+  .resume-modal-controls .btn {
+    background-color: rgba(255,255,255,0.10) !important;
+    border: 1px solid rgba(255,255,255,0.28) !important;
+    color: #FFFFFF !important;
+    padding: 0.4rem 0.75rem !important;
+    min-width: 44px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  .resume-modal-controls .btn:hover {
+    background-color: rgba(255,255,255,0.18) !important;
+    border-color: rgba(255,255,255,0.45) !important;
+    color: #ffffff !important;
+  }
+
+  .resume-modal-controls .btn:focus {
+    box-shadow: 0 0 0 3px rgba(0,70,255,0.15) !important;
+    outline: none !important;
+  }
+
   .zoom-level {
     color: #E3E3E3;
     font-weight: 600;
