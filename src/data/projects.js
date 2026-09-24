@@ -3,56 +3,69 @@
 
 export const featuredProject = {
   id: "svilla",
-  title: "S-Villa Private Pickleball & Courtyard",
+  title: "S-Villa — Private Venue Booking Platform",
   category: "Booking & Reservation Platform",
   imgPath: `${process.env.PUBLIC_URL}/projects/svilla.jpg`,
   demoLink: "https://svilla.vercel.app/",
+  // Leave empty to hide the "Source Code" button; sourceNote shows instead.
+  sourceLink: "",
+  sourceNote: "Source code is private (client project). Available on request.",
   summary:
-    "A production-ready booking platform for a private venue offering pickleball, badminton, a jacuzzi, a music room, and a bar & lounge for small groups. Customers book and pay through a guided flow, while the owner runs the entire business from a dedicated Owner Portal — without touching code.",
+    "A full-stack reservation system for a private villa with pickleball and badminton courts, a jacuzzi, and a bar & lounge. It pairs a customer booking flow with a companion Owner Portal for running the business day-to-day. Built solo from spec to live deployment.",
   metrics: [
     { value: "0", label: "Possible double-bookings (DB-enforced)" },
-    { value: "2", label: "Apps in one: customer site + Owner Portal" },
+    { value: "5", label: "Automated email states, sent at zero cost" },
     { value: "100%", label: "Server-side price calculation" },
   ],
   highlights: [
     {
       title: "Race-condition-safe booking engine",
-      text: "A PostgreSQL exclusion constraint, not only app-level checks, guarantees two customers can never double-book the same slot, even under simultaneous requests.",
+      text: "A PostgreSQL GiST exclusion constraint guarantees two customers can never double-book the same slot, even under simultaneous requests. Enforced at the database, not just in app code.",
     },
     {
-      title: "Live, database-driven pricing",
-      text: "Owner price edits go live on the public site and booking calculator instantly, while past bookings keep an immutable price snapshot.",
-    },
-    {
-      title: "Server-authoritative validation",
-      text: "The client never sends a price or total. Everything is calculated and verified server-side in a transactional Postgres function.",
+      title: "Server-authoritative pricing",
+      text: "The client never sends a price or total. A transactional Postgres function calculates and validates everything, then snapshots the price into an immutable booking_items record.",
     },
     {
       title: "Row Level Security end-to-end",
-      text: "Customers see only their own bookings. Only the owner role can access payment proofs, closure reasons, or confirm and reject bookings.",
+      text: "Strict customer vs. owner role separation, enforced at the database and not just the UI.",
     },
     {
-      title: "Secure payment-proof workflow",
-      text: "Proofs live in private storage and are served through signed, short-lived URLs. Nothing sits in a public bucket.",
+      title: "Zero-cost email to real customers",
+      text: "A Gmail SMTP fallback, built after finding the sandboxed provider only delivers to the developer's inbox without a paid domain. Includes retry logic and duplicate-send prevention via a shared database counter.",
+    },
+    {
+      title: "Secure payment-proof storage",
+      text: "A private Supabase Storage bucket, signed short-lived URLs, and an in-app lightbox preview. Nothing is publicly exposed.",
     },
     {
       title: "Motion-forward, accessible UI",
-      text: "Scroll reveals, hover interactions, and animated step transitions with Framer Motion, plus reduced-motion support.",
+      text: "Scroll reveals, hover micro-interactions, animated step transitions, full reduced-motion support, and a mobile-first layout refined through real device testing.",
     },
   ],
+  hardening: {
+    title: "Hardened through real-world testing",
+    text: "Took the app through a full real-world testing cycle before calling it done.",
+    items: [
+      "Traced and fixed a live production outage: a malformed environment variable was silently breaking booking creation, payment-proof preview, and the cron expiry job at the same time.",
+      "Fixed a race condition that sent duplicate notification emails.",
+      "Closed several mobile-specific UX gaps found through actual phone testing.",
+    ],
+  },
   customerFeatures: [
     "Browse live pricing and availability",
-    "Book a private time slot through a guided multi-step flow",
-    "Submit GCash or bank-transfer payment proof",
-    "Track booking status on a private page, with email updates at each step",
+    "Book a private time slot through a guided 6-step flow",
+    "Pay via GCash or bank transfer by uploading a payment receipt",
+    "Track booking status on a persistent status page",
+    "Get real email updates at every step: pending, confirmed, rejected, cancelled, expired",
   ],
   ownerFeatures: [
-    "Review, confirm, or reject bookings (with a required rejection reason)",
-    "Inspect uploaded payment proofs inline with a zoomable lightbox",
-    "Edit service prices anytime, while past bookings keep their locked-in price",
+    "Review, confirm, or reject bookings (with required reasons)",
+    "View payment proofs in a secure, zoomable image preview",
+    "Edit service prices live, while past bookings keep their locked-in price",
     "Close dates, block hours, set recurring closed days and operating hours",
-    "Configure GCash/bank details and contact info, reflected live on the site",
-    "Calendar view of pending, confirmed, and closed dates",
+    "Archive old bookings without deleting records",
+    "Configure payment and contact details, reflected live on the site",
   ],
   techStack: [
     "Next.js",
@@ -61,7 +74,7 @@ export const featuredProject = {
     "Supabase",
     "PostgreSQL",
     "Framer Motion",
-    "Resend",
+    "Nodemailer",
     "Vercel",
   ],
 };

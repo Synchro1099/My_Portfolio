@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
-import { AiOutlineDown, AiOutlineUp, AiOutlineUser, AiOutlineDashboard } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp, AiOutlineUser, AiOutlineDashboard, AiOutlineGithub, AiOutlineSafety, AiOutlineLock } from "react-icons/ai";
+import Reveal from "../Reveal";
 
 const FeaturedProject = ({ project }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -9,6 +10,8 @@ const FeaturedProject = ({ project }) => {
 
   return (
     <article className="featured-project" id={project.id}>
+      <div className="featured-aura" aria-hidden="true"></div>
+
       <div className="featured-project-top">
         <a
           href={project.demoLink}
@@ -31,11 +34,16 @@ const FeaturedProject = ({ project }) => {
             width="1200"
             height="750"
           />
+          <span className="featured-media-sheen" aria-hidden="true"></span>
         </a>
 
         <div className="featured-project-info">
           <div className="featured-project-badges">
             <span className="featured-badge">Latest Project</span>
+            <span className="featured-live-pill">
+              <span className="status-dot" aria-hidden="true"></span>
+              Live in production
+            </span>
             <span className="featured-category">{project.category}</span>
           </div>
           <h2 className="featured-project-title">{project.title}</h2>
@@ -66,6 +74,18 @@ const FeaturedProject = ({ project }) => {
               <CgWebsite style={{ marginRight: "8px" }} />
               Visit Live Site
             </Button>
+            {project.sourceLink && (
+              <Button
+                href={project.sourceLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline-primary"
+                className="btn-secondary-hero"
+              >
+                <AiOutlineGithub style={{ marginRight: "8px" }} />
+                Source Code
+              </Button>
+            )}
             <Button
               variant="outline-primary"
               className="btn-secondary-hero"
@@ -77,6 +97,12 @@ const FeaturedProject = ({ project }) => {
               {showDetails ? <AiOutlineUp style={{ marginLeft: "8px" }} /> : <AiOutlineDown style={{ marginLeft: "8px" }} />}
             </Button>
           </div>
+          {!project.sourceLink && project.sourceNote && (
+            <p className="featured-source-note">
+              <AiOutlineLock aria-hidden="true" />
+              {project.sourceNote}
+            </p>
+          )}
         </div>
       </div>
 
@@ -84,14 +110,33 @@ const FeaturedProject = ({ project }) => {
         <h3 className="featured-section-title">Technical Highlights</h3>
         <div className="featured-highlights-grid">
           {project.highlights.map((item, index) => (
-            <div className="featured-highlight spotlight" key={item.title}>
-              <span className="featured-highlight-index">{String(index + 1).padStart(2, "0")}</span>
-              <h4>{item.title}</h4>
-              <p>{item.text}</p>
-            </div>
+            <Reveal className="h-100" key={item.title} delay={(index % 3) * 90}>
+              <div className="featured-highlight spotlight">
+                <span className="featured-highlight-index">{String(index + 1).padStart(2, "0")}</span>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
+
+      {project.hardening && (
+        <Reveal className="featured-hardening">
+          <div className="featured-hardening-icon" aria-hidden="true">
+            <AiOutlineSafety />
+          </div>
+          <div>
+            <h3 className="featured-section-title">{project.hardening.title}</h3>
+            {project.hardening.text && <p className="featured-hardening-text">{project.hardening.text}</p>}
+            <ul className="featured-feature-list">
+              {project.hardening.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      )}
 
       {showDetails && (
         <div className="featured-details" id={detailsId}>
