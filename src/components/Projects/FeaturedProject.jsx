@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { AiOutlineDown, AiOutlineUp, AiOutlineUser, AiOutlineDashboard, AiOutlineGithub, AiOutlineSafety, AiOutlineLock } from "react-icons/ai";
@@ -7,9 +7,19 @@ import Reveal from "../Reveal";
 const FeaturedProject = ({ project }) => {
   const [showDetails, setShowDetails] = useState(false);
   const detailsId = `${project.id}-details`;
+  const cardRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  // Closes the case study and brings the reader back to the top of the card.
+  const closeDetails = () => {
+    setShowDetails(false);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    cardRef.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    toggleRef.current?.focus({ preventScroll: true });
+  };
 
   return (
-    <article className="featured-project" id={project.id}>
+    <article className="featured-project" id={project.id} ref={cardRef}>
       <div className="featured-aura" aria-hidden="true"></div>
 
       <div className="featured-project-top">
@@ -89,6 +99,7 @@ const FeaturedProject = ({ project }) => {
             <Button
               variant="outline-primary"
               className="btn-secondary-hero"
+              ref={toggleRef}
               onClick={() => setShowDetails((prev) => !prev)}
               aria-expanded={showDetails}
               aria-controls={detailsId}
@@ -105,6 +116,37 @@ const FeaturedProject = ({ project }) => {
           )}
         </div>
       </div>
+
+      {showDetails && (
+        <div className="featured-details" id={detailsId}>
+          <div className="featured-details-col">
+            <h3 className="featured-section-title">
+              <AiOutlineUser /> Customer Side
+            </h3>
+            <ul className="featured-feature-list">
+              {project.customerFeatures.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="featured-details-col">
+            <h3 className="featured-section-title">
+              <AiOutlineDashboard /> Owner Portal
+            </h3>
+            <ul className="featured-feature-list">
+              {project.ownerFeatures.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="featured-details-footer">
+            <Button variant="outline-primary" className="btn-secondary-hero" onClick={closeDetails}>
+              Hide case study
+              <AiOutlineUp style={{ marginLeft: "8px" }} />
+            </Button>
+          </div>
+        </div>
+      )}
 
       <div className="featured-highlights">
         <h3 className="featured-section-title">Technical Highlights</h3>
@@ -138,30 +180,6 @@ const FeaturedProject = ({ project }) => {
         </Reveal>
       )}
 
-      {showDetails && (
-        <div className="featured-details" id={detailsId}>
-          <div className="featured-details-col">
-            <h3 className="featured-section-title">
-              <AiOutlineUser /> Customer Side
-            </h3>
-            <ul className="featured-feature-list">
-              {project.customerFeatures.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="featured-details-col">
-            <h3 className="featured-section-title">
-              <AiOutlineDashboard /> Owner Portal
-            </h3>
-            <ul className="featured-feature-list">
-              {project.ownerFeatures.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
     </article>
   );
 };

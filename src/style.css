@@ -3446,6 +3446,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
+  pointer-events: none;
   animation: glowDrift 14s ease-in-out infinite alternate;
 }
 
@@ -3494,6 +3495,21 @@ body {
 
 .featured-project-media:hover {
   box-shadow: 0 28px 60px rgba(0, 70, 255, 0.3);
+}
+
+/* Case study panel: close button along the bottom */
+.featured-details-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.4rem;
+}
+
+@media (max-width: 767px) {
+  .featured-details-footer .btn-secondary-hero {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* Private-source note under the action buttons */
