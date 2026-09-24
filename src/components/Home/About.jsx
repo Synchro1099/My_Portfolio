@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProfilePic from "../../assets/picture.jpg";
 import Tilt from "react-parallax-tilt";
+import Reveal from "../Reveal";
 import {
   AiFillGithub,
   AiOutlineFacebook
@@ -28,7 +29,7 @@ const About = () => {
                     I enjoy understanding problems, designing effective solutions, and using the right technologies to create reliable products.
                   </p>
 
-              <div className="experience-summary-card">
+              <Reveal className="experience-summary-card spotlight">
                 <h2 className="experience-title">Professional Experience</h2>
                 <p className="experience-summary-text">
                   Experienced in building web applications and digital solutions for different industries. I have worked on production systems involving business operations, online platforms, integrations, automation, and performance optimization.
@@ -39,7 +40,7 @@ const About = () => {
                   <li>Improved workflows through automation and optimized solutions.</li>
                   <li>Worked with different technologies and adapted to project requirements.</li>
                 </ul>
-              </div>
+              </Reveal>
 
 
           </Col>

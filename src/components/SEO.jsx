@@ -5,7 +5,7 @@ const SITE_URL = "https://society22.club";
 const BASE_NAME = "Jan Mark Pereda";
 const DEFAULT_TITLE = "Jan Mark Pereda | Full Stack Web Developer | React, Node.js, Laravel";
 const DEFAULT_DESCRIPTION = "Jan Mark Pereda is a Full Stack Developer building scalable web applications and digital solutions with React, Node.js, Laravel, APIs, and cloud deployment.";
-const DEFAULT_IMAGE = `${SITE_URL}/Logo.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 const DEFAULT_KEYWORDS = "Full Stack Developer, React, Node.js, Laravel, Web Applications, Digital Solutions, APIs, Cloud Deployment, Frontend Developer, Backend Developer, Portfolio";
 
 const SEO = ({ title, description = DEFAULT_DESCRIPTION, path = "/", keywords = DEFAULT_KEYWORDS }) => {
@@ -29,6 +29,8 @@ const SEO = ({ title, description = DEFAULT_DESCRIPTION, path = "/", keywords = 
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={DEFAULT_IMAGE} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="Jan Mark Pereda Portfolio Preview" />
 
       <meta name="twitter:card" content="summary_large_image" />

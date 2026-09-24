@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    updateExpanded(false);
+  }, [location.pathname]);
 
   return (
     <Navbar
       expanded={expand}
       fixed="top"
       expand="lg"
-      className="modern-navbar"
+      className={scrolled ? "modern-navbar is-scrolled" : "modern-navbar"}
     >
       <Container className="navbar-container">
         <Navbar.Brand as={Link} to="/" className="navbar-brand-modern">
           <div className="logo-icon"></div>
-          <span className="brand-text">Portfolio</span>
+          <span className="brand-text">Jan Mark<span className="brand-dot">.</span></span>
         </Navbar.Brand>
         
         <Navbar.Toggle
@@ -87,21 +100,14 @@ function NavBar() {
           </Nav>
           
           <div className="navbar-button-container">
-            <Button
-              as={Link}
-              to="/resume"
-              className="resume-button"
-              onClick={() => updateExpanded(false)}
-            >
-              Resume
-            </Button>
+            <ThemeToggle />
             <Button 
               as={Link} 
               to="/contact" 
               className="contact-button"
               onClick={() => updateExpanded(false)}
             >
-              Contact
+              Hire Me
             </Button>
           </div>
         </Navbar.Collapse>

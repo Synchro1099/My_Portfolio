@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import Particle from '../components/Particle';
 import ContactForm from '../components/Contact/Contact';
 import Social from '../components/Contact/Social';
+import Reveal from "../components/Reveal";
 import SEO from '../components/SEO';
 
 const Contact = () => {
@@ -16,7 +17,7 @@ const Contact = () => {
       <Particle />
       <div className="contact-hero-section">
         <Container>
-          <div className="contact-hero-content">
+          <Reveal className="contact-hero-content">
             <div className="contact-hero-badge">CONTACT</div>
             <h1 className="contact-hero-title">
               Let's <span className="contact-hero-accent">Build Something Valuable</span>
@@ -25,12 +26,14 @@ const Contact = () => {
               Open to Full Stack Developer opportunities, consulting engagements, and product-focused collaborations.
               Share your goals, timeline, and scope, and I will get back to you as soon as possible.
             </p>
-          </div>
+          </Reveal>
         </Container>
       </div>
       
       <Container className="contact-form-section">
-        <ContactForm />
+        <Reveal delay={120}>
+          <ContactForm />
+        </Reveal>
       </Container>
 
       <Container className="contact-social-section">

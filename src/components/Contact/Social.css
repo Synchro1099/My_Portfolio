@@ -1,5 +1,5 @@
 .contact-text{
-    color: #234C6A
+    color: var(--text-strong);
 }
 
 .contact-social-links {

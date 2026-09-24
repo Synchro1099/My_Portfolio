@@ -2,6 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script>
+      // Apply the saved (or system) theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.setAttribute("data-theme", "dark");
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" href="%PUBLIC_URL%/Logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,13 +31,15 @@
     <meta property="og:title" content="Jan Mark Pereda | Full Stack Web Developer | React, Node.js, Laravel" />
     <meta property="og:description" content="Full Stack Developer portfolio featuring scalable web applications, digital solutions, APIs, and cloud-focused delivery." />
     <meta property="og:url" content="https://society22.club/" />
-    <meta property="og:image" content="https://society22.club/Logo.png" />
+    <meta property="og:image" content="https://society22.club/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Jan Mark Pereda Portfolio Preview" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Jan Mark Pereda | Full Stack Web Developer | React, Node.js, Laravel" />
     <meta name="twitter:description" content="Full Stack Developer portfolio featuring scalable web applications, digital solutions, APIs, and cloud-focused delivery." />
-    <meta name="twitter:image" content="https://society22.club/Logo.png" />
+    <meta name="twitter:image" content="https://society22.club/og-image.png" />
     <meta name="twitter:image:alt" content="Jan Mark Pereda Portfolio Preview" />
 
     <script type="application/ld+json">

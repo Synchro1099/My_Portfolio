@@ -61,14 +61,6 @@ const Contact = () => {
         try {
             const time = formatCurrentDateTime(new Date());
 
-            console.log({
-                user_name: userName,
-                user_email: userEmail,
-                title: title || 'New portfolio contact form message',
-                message,
-                time,
-            });
-
             await emailjs.send(
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
@@ -95,12 +87,8 @@ const Contact = () => {
             console.error('Error sending email:', error);
             setNotDone(false);
             setDone(false);
-            const emailjsError = error?.text || error?.message || '';
-            if (emailjsError.toLowerCase().includes('recipient') || emailjsError.toLowerCase().includes('empty')) {
-                setErrorMessage('EmailJS template recipient is still empty. Set the template To email field to peredajanmark@gmail.com in the EmailJS dashboard.');
-            } else {
-                setErrorMessage(emailjsError || 'Email delivery failed. Check the EmailJS service ID, template variables, and recipient address.');
-            }
+            // Details stay in the console; visitors get a friendly fallback.
+            setErrorMessage('Sorry, your message could not be sent right now. Please try again, or email me directly at peredajanmark@gmail.com.');
         } finally {
             setSending(false);
         }
@@ -111,6 +99,23 @@ const Contact = () => {
             <Row className="justify-content-center">
                 <Col lg={8} md={10}>
                     <div className="contact-form-container">
+                        {done ? (
+                            <div className="contact-success" role="status">
+                                <svg className="contact-success-check" viewBox="0 0 52 52" aria-hidden="true">
+                                    <circle className="contact-success-circle" cx="26" cy="26" r="24" fill="none" />
+                                    <path className="contact-success-tick" fill="none" d="M15 27 l7.5 7.5 L37 19" />
+                                </svg>
+                                <h3>Message sent!</h3>
+                                <p>Thank you for reaching out. I've received your message and will get back to you soon.</p>
+                                <Button
+                                    variant="outline-primary"
+                                    className="btn-secondary-hero"
+                                    onClick={() => setDone(false)}
+                                >
+                                    Send another message
+                                </Button>
+                            </div>
+                        ) : (
                         <form ref={form} onSubmit={sendEmail} className="professional-contact-form">
                             <div className="form-group">
                                 <label htmlFor="user_name" className="form-label">Name</label>
@@ -168,20 +173,15 @@ const Contact = () => {
                                 </div>
                             )}
 
-                            {done && (
-                                <div className="form-success">
-                                    Thank you! I've received your message and will get back to you soon.
-                                </div>
-                            )}
-
                             <Button 
                                 type="submit" 
                                 className="contact-submit-btn" 
-                                disabled={done || sending}
+                                disabled={sending}
                             >
-                                {sending ? 'Sending...' : done ? 'Message Sent ✓' : 'Send Message'}
+                                {sending ? 'Sending...' : 'Send Message'}
                             </Button>
                         </form>
+                        )}
                     </div>
                 </Col>
             </Row>
