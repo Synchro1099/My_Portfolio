@@ -16,7 +16,21 @@
         try {
           seen = sessionStorage.getItem("jm-loader-seen") === "1";
         } catch (e) {}
-        if (!seen) root.classList.add("loader-active");
+        if (seen) return;
+        root.classList.add("loader-active");
+
+        // Fallback: if the app never dismisses the loader (e.g. the bundle fails),
+        // fade it out and unlock scroll anyway.
+        window.setTimeout(function () {
+          var loader = document.getElementById("app-loader");
+          if (!loader || !root.classList.contains("loader-active")) return;
+          var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          loader.classList.add("is-leaving");
+          window.setTimeout(function () {
+            if (loader.parentNode) loader.parentNode.removeChild(loader);
+            root.classList.remove("loader-active");
+          }, reduced ? 150 : 400);
+        }, 4000);
       })();
     </script>
     <style>
@@ -40,6 +54,7 @@
         color: #234c6a;
       }
       html[data-theme="dark"] #app-loader { background: #0b1120; color: #e6edf7; }
+      html[data-theme="dark"] #app-loader path { stroke: #7aa2ff; }
 
       #app-loader svg { width: 96px; height: 80px; overflow: visible; }
       #app-loader path {
