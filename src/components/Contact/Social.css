@@ -40,16 +40,20 @@
     z-index: -1;
   }
 
-  .contact-social-icons:hover::before {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #0046FF;
+  @media (hover: hover) and (pointer: fine) {
+    .contact-social-icons:hover::before {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #0046FF;
+    }
   }
   
-  .contact-social-icons:hover {
-    color: #E3E3E3 !important;
-    box-shadow: 0 0 7px #0046FF;
-    background: #0033CC !important;
-    transform: translateY(-3px);
+  @media (hover: hover) and (pointer: fine) {
+    .contact-social-icons:hover {
+      color: #E3E3E3 !important;
+      box-shadow: 0 0 7px #0046FF;
+      background: #0033CC !important;
+      transform: translateY(-3px);
+    }
   }
 
   .contact-social-icons svg {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { AiOutlineDown, AiOutlineUp, AiOutlineUser, AiOutlineDashboard, AiOutlineGithub, AiOutlineSafety, AiOutlineLock } from "react-icons/ai";
@@ -9,6 +9,23 @@ const FeaturedProject = ({ project }) => {
   const detailsId = `${project.id}-details`;
   const cardRef = useRef(null);
   const toggleRef = useRef(null);
+  const closeRef = useRef(null);
+
+  // Hide the floating back-to-top button while "Hide case study" is on screen,
+  // so the two never overlap.
+  useEffect(() => {
+    const node = closeRef.current;
+    if (!showDetails || !node || !("IntersectionObserver" in window)) return undefined;
+    const root = document.documentElement;
+    const observer = new IntersectionObserver(([entry]) => {
+      root.classList.toggle("hide-back-to-top", entry.isIntersecting);
+    });
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      root.classList.remove("hide-back-to-top");
+    };
+  }, [showDetails]);
 
   // Closes the case study and brings the reader back to the top of the card.
   const closeDetails = () => {
@@ -140,7 +157,7 @@ const FeaturedProject = ({ project }) => {
             </ul>
           </div>
           <div className="featured-details-footer">
-            <Button variant="outline-primary" className="btn-secondary-hero" onClick={closeDetails}>
+            <Button ref={closeRef} variant="outline-primary" className="btn-secondary-hero" onClick={closeDetails}>
               Hide case study
               <AiOutlineUp style={{ marginLeft: "8px" }} />
             </Button>

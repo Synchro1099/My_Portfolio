@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 
+// Particles are skipped on phone-sized screens to save battery and frames.
+const WIDE_QUERY = "(min-width: 768px)";
+
 function Particle() {
+  const [wide, setWide] = useState(() => window.matchMedia(WIDE_QUERY).matches);
+
+  useEffect(() => {
+    const query = window.matchMedia(WIDE_QUERY);
+    const onChange = () => setWide(query.matches);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, []);
+
+  if (!wide) return null;
+
   return (
     <Particles
       id="tsparticles"
@@ -46,7 +60,9 @@ function Particle() {
             },
           },
         },
-        retina_detect: true,
+        // Caps the canvas at 1x device pixels. This tsparticles version only offers
+        // the full device ratio or 1x, and the 1px dots look the same either way.
+        retina_detect: false,
       }}
     />
   );

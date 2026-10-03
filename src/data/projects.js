@@ -32,7 +32,7 @@ export const featuredProject = {
     },
     {
       title: "Email and SMS notifications",
-      text: "Six customer emails and separate owner alerts, plus optional SMS via Semaphore. Sends through Resend with a Gmail SMTP fallback, with retry logic and duplicate-send prevention via a shared database counter.",
+      text: "Six customer emails and separate owner alerts, plus optional SMS via Semaphore. Sends through Gmail SMTP, with Resend as an alternative. Retry logic and a shared database counter prevent duplicate sends.",
     },
     {
       title: "Secure payment-proof storage",
