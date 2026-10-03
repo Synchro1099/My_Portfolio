@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { whenLoaderGone } from "../../appLoader";
 
 // Animates a number from 0 to `end` when it scrolls into view.
 const CountUp = ({ end, decimals = 0, suffix = "", duration = 1600 }) => {
@@ -16,6 +17,7 @@ const CountUp = ({ end, decimals = 0, suffix = "", duration = 1600 }) => {
     }
 
     let frame = null;
+    let cancelled = false;
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
       observer.disconnect();
@@ -30,8 +32,12 @@ const CountUp = ({ end, decimals = 0, suffix = "", duration = 1600 }) => {
       frame = requestAnimationFrame(tick);
     }, { threshold: 0.4 });
 
-    observer.observe(node);
+    // Hold the count until the intro loader has faded out.
+    whenLoaderGone().then(() => {
+      if (!cancelled) observer.observe(node);
+    });
     return () => {
+      cancelled = true;
       observer.disconnect();
       if (frame !== null) cancelAnimationFrame(frame);
     };

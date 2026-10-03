@@ -204,30 +204,14 @@ html {
   }
   
   /* --------- */
-  /*  Preloader */
+  /*  Intro loader (markup + styles live in public/index.html) */
   /* --------- */
-  #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999999;
-    background-color: var(--bg);
-    background-image: url(./assets/Walk1.gif);
-    background-repeat: no-repeat;
-    background-position: center;
+  /* Hold entrance animations until the loader is gone. */
+  html.loader-active .page-transition,
+  html.loader-active .hero-text-section {
+    animation-play-state: paused;
   }
-  
-  #preloader-none {
-    opacity: 0;
-  }
-  
-  #no-scroll {
-    overflow: hidden;
-    height: 100vh;
-  }
-  
+
   /* --------- */
   /*Scrollbar   */
   /* --------- */

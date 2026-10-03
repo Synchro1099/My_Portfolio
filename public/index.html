@@ -3,15 +3,79 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      // Apply the saved (or system) theme before first paint to avoid a flash.
+      // Apply the saved (or system) theme before first paint to avoid a flash,
+      // and show the intro loader once per browser session.
       (function () {
+        var root = document.documentElement;
         try {
           var saved = localStorage.getItem("theme");
           var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          if (dark) document.documentElement.setAttribute("data-theme", "dark");
+          if (dark) root.setAttribute("data-theme", "dark");
         } catch (e) {}
+        var seen = false;
+        try {
+          seen = sessionStorage.getItem("jm-loader-seen") === "1";
+        } catch (e) {}
+        if (!seen) root.classList.add("loader-active");
       })();
     </script>
+    <style>
+      /* Intro loader. Colors mirror the --bg / --text-strong tokens in src/style.css,
+         which isn't loaded yet when this paints. */
+      html { background: #e3e3e3; }
+      html[data-theme="dark"] { background: #0b1120; }
+      html.loader-active, html.loader-active body { overflow: hidden; }
+
+      #app-loader { display: none; }
+      html.loader-active #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        background: #e3e3e3;
+        color: #234c6a;
+      }
+      html[data-theme="dark"] #app-loader { background: #0b1120; color: #e6edf7; }
+
+      #app-loader svg { width: 96px; height: 80px; overflow: visible; }
+      #app-loader path {
+        fill: none;
+        stroke: #0046ff;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: app-loader-draw 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+      }
+      #app-loader .app-loader-m { animation-delay: 0.15s; }
+
+      .app-loader-name {
+        margin: 0;
+        font-family: "Space Grotesk", "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        opacity: 0;
+        animation: app-loader-fade 0.4s ease 0.45s forwards;
+      }
+
+      /* Exit fade; !important so the app's reduced-motion reset can't cancel it. */
+      #app-loader.is-leaving { opacity: 0 !important; transition: opacity 0.4s ease !important; }
+
+      @keyframes app-loader-draw { to { stroke-dashoffset: 0; } }
+      @keyframes app-loader-fade { to { opacity: 1; } }
+
+      @media (prefers-reduced-motion: reduce) {
+        #app-loader path { stroke-dashoffset: 0; animation: none; }
+        .app-loader-name { opacity: 1; animation: none; }
+        #app-loader.is-leaving { transition-duration: 0.15s !important; }
+      }
+    </style>
     <link rel="icon" href="%PUBLIC_URL%/Logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,6 +138,13 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="app-loader" role="status" aria-label="Loading">
+      <svg viewBox="0 0 120 100" aria-hidden="true" focusable="false">
+        <path class="app-loader-j" pathLength="1" d="M22 12 H54 M46 12 V64 Q46 88 28 88 Q14 88 10 74" />
+        <path class="app-loader-m" pathLength="1" d="M60 88 V12 L82 54 L104 12 V88" />
+      </svg>
+      <p class="app-loader-name" aria-hidden="true">Jan Mark Pereda</p>
+    </div>
     <div id="root"></div>
   </body>
 </html>

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
 
 import Home from './pages/Home';
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import PreLoader from "./components/PreLoader";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollProgress from "./components/ScrollProgress";
 import useSpotlight from "./hooks/useSpotlight";
+import { hideLoader } from "./appLoader";
 
 import "./App.css";
 import "./style.css";
@@ -41,31 +41,22 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  const [load, updateLoad] = useState(true);
   useSpotlight();
 
+  // The intro loader lives in public/index.html; dismiss it once the app has mounted.
   useEffect(() => {
-    const timer = setTimeout(() => {
-      updateLoad(false);
-    }, 600);
-
-    return () => clearTimeout(timer);
+    hideLoader();
   }, []);
 
   return (
     <Router>
-      {/* Show Preloader only while loading */}
-      {load ? (
-        <PreLoader load={load} />
-      ) : (
-        <div className="App" id="scroll">
-          <ScrollProgress />
-          <Navbar />
-          <ScrollToTop />
-          <AnimatedRoutes />
-          <Footer />
-        </div>
-      )}
+      <div className="App" id="scroll">
+        <ScrollProgress />
+        <Navbar />
+        <ScrollToTop />
+        <AnimatedRoutes />
+        <Footer />
+      </div>
     </Router>
   );
 }
