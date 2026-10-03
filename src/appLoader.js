@@ -2,8 +2,11 @@
 // The inline script there adds `loader-active` to <html> on the first visit of a
 // browser session; this module fades the loader out and removes it from the DOM.
 
-const MIN_VISIBLE_MS = 400;
-const MAX_WAIT_MS = 1500;
+// Long enough for the J, M and name animations (done by ~850ms) plus a short pause.
+const MIN_VISIBLE_MS = 1000;
+// Reduced motion has nothing to watch, so it can leave sooner.
+const REDUCED_MIN_VISIBLE_MS = 400;
+const MAX_WAIT_MS = 2000;
 const FADE_MS = 400;
 const REDUCED_FADE_MS = 150;
 const SEEN_KEY = "jm-loader-seen";
@@ -41,12 +44,14 @@ export const hideLoader = () => {
     return;
   }
 
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const minVisibleMs = reducedMotion ? REDUCED_MIN_VISIBLE_MS : MIN_VISIBLE_MS;
+
   // performance.now() counts from navigation start, which is when the loader first paints.
   const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
   Promise.race([fontsReady, wait(MAX_WAIT_MS - performance.now())])
-    .then(() => wait(MIN_VISIBLE_MS - performance.now()))
+    .then(() => wait(minVisibleMs - performance.now()))
     .then(() => {
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const fadeMs = reducedMotion ? REDUCED_FADE_MS : FADE_MS;
       loader.classList.add("is-leaving");
       // A timer rather than transitionend, so a skipped transition can't leave it stuck.
