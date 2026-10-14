@@ -1,21 +1,26 @@
-// Single source of truth for portfolio projects.
-// To add a project, append an entry to `projects` (or swap `featuredProject`).
+// Tightly cropped copy of Soc22.jpg, so the logo fills the card.
+import society22Logo from "../assets/Soc22-card.jpg";
 
-export const featuredProject = {
+// Single source of truth for portfolio projects.
+// Every project uses the same card on the Projects page, in the order of `projects`.
+// `homeFeaturedProject` is the project shown in the homepage feature.
+
+const svilla = {
   id: "svilla",
   title: "S-Villa — Private Venue Booking Platform",
   category: "Booking & Reservation Platform",
   imgPath: `${process.env.PUBLIC_URL}/projects/svilla.jpg`,
   demoLink: "https://svilla.vercel.app/",
-  // Leave empty to hide the "Source Code" button; sourceNote shows instead.
-  sourceLink: "",
-  sourceNote: "Source code is private (client project). Available on request.",
-  summary:
-    "A full-stack booking platform for a private villa: one pickleball court booked by the hour, with badminton, a KTV lounge, a jacuzzi, and a courtyard as add-ons. Each booking reserves the whole venue for a single group of up to 6 guests. Built solo from spec to live deployment.",
-  metrics: [
-    { value: "0", label: "Possible double-bookings (DB-enforced)" },
-    { value: "156", label: "Automated tests" },
-    { value: "100%", label: "Server-side price calculation" },
+  businessProblem:
+    "A private villa with a pickleball court and add-on facilities needed customers to see live prices and availability, book and pay online, and never double-book a slot, plus a simple way for the owner to run bookings day to day.",
+  solutionBuilt:
+    "A full-stack booking platform: one pickleball court booked by the hour, with badminton, a KTV lounge, a jacuzzi, and a courtyard as add-ons. Each booking reserves the whole venue for a single group of up to 6 guests, and a companion Owner Portal runs the business.",
+  contribution:
+    "Built solo from spec to live deployment: database design, booking engine, customer site, Owner Portal, notifications, and testing.",
+  outcome: [
+    "Zero possible double-bookings, enforced by the database.",
+    "156 automated tests, including database tests against real Postgres.",
+    "100% server-side price calculation: the client never sends a price or total.",
   ],
   highlights: [
     {
@@ -44,8 +49,7 @@ export const featuredProject = {
     },
   ],
   hardening: {
-    title: "Hardened through real-world testing",
-    text: "Took the app through a full real-world testing cycle before calling it done.",
+    title: "Hardened Through Real-World Testing",
     items: [
       "Traced and fixed a live production outage: a malformed environment variable was silently breaking booking creation, payment-proof preview, and the cron expiry job at the same time.",
       "Fixed a race condition that sent duplicate notification emails.",
@@ -89,7 +93,68 @@ export const featuredProject = {
   ],
 };
 
+const society22 = {
+  id: "society22",
+  title: "Society 22 — Event Registration & Payment Platform",
+  category: "Events & Payments Platform",
+  badge: "Latest Project",
+  // Short text for the homepage feature.
+  teaser:
+    "An event registration and payment platform. Guests apply, get approved, pay and upload proof of payment on the site, and the owner runs every event from a private portal.",
+  // No screenshot: the card shows the brand logo on a dark panel.
+  imgPath: society22Logo,
+  imgStyle: "logo",
+  demoLink: "https://society22.club",
+  businessProblem:
+    "Society 22, a private social events brand in Pampanga, Philippines, ran its old site on a paid Hostinger VPS (React + Laravel + MySQL), with guest registration, review and payment checking handled separately.",
+  solutionBuilt:
+    "A from-scratch redesign as a serverless Next.js app on Vercel with Supabase. Guests apply, get reviewed, pay and upload proof of payment, all on the site, and the owner runs everything from a private portal.",
+  contribution:
+    "Solo full-stack developer: design, front end, back end, database, and deployment.",
+  outcome: [
+    "Moved registration, review and payment checking into one self-serve flow.",
+    "Replaced the paid VPS with serverless hosting, with no server to maintain.",
+    "Launched on the brand's own domain after a full live test of guest and owner flows.",
+  ],
+  customerTitle: "Guest Side",
+  customerFeatures: [
+    "Redesigned, mobile-first gold-on-black site: Home, About, Events, Blog, FAQs, Contact, policy pages",
+    "Event pages with posters; per-event Google Form applications auto-synced into the site (Apps Script)",
+    "Application flow: Pending review > Approved or Rejected > Proof of payment uploaded > Paid",
+    "Private guest status page via secure signed link, plus \"find my booking\" lookup",
+    "Proof of payment upload (GCash or bank transfer), including iPhone HEIC photos",
+    "48-hour payment window that never runs past event start, with automatic expiry",
+    "Venue address hidden until payment is confirmed, then revealed in the confirmation email",
+    "Automatic emails for every step",
+    "Privacy by design: no public gallery and no guest faces",
+  ],
+  ownerFeatures: [
+    "Secure login with one Event screen (details, poster upload, form link)",
+    "Quick and bulk approve/reject, proof review queue",
+    "Door check-in on event night, daily summary email",
+    "Manual \"Add guest\"",
+    "CSV/ZIP export and cleanup of past events",
+    "Installable on the owner's phone (PWA)",
+  ],
+  techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Playwright"],
+  // Full stack, shown in the case study in place of the tag list.
+  techGroups: [
+    { label: "Front end", items: "Next.js 16 (App Router, React 19, React Compiler), TypeScript, Tailwind CSS 4, Radix UI, Motion, Lucide, Sonner" },
+    { label: "Back end", items: "Next.js server actions and API routes (serverless), Zod" },
+    { label: "Database, Auth & Storage", items: "Supabase (Postgres, Row Level Security, DB-enforced status rules, public bucket for posters, private bucket for payment proofs)" },
+    { label: "Email", items: "Nodemailer over Gmail" },
+    { label: "Integrations", items: "Google Forms + Google Apps Script auto-sync" },
+    { label: "Hosting", items: "Vercel (serverless functions in Seoul near the database, daily cron jobs), custom domain" },
+    { label: "Testing", items: "Vitest unit tests, PGlite database tests, Playwright end-to-end and responsive tests" },
+    { label: "Tooling", items: "ESLint, sharp, Git/GitHub auto-deploy from main" },
+  ],
+};
+
+export const homeFeaturedProject = society22;
+
 export const projects = [
+  society22,
+  svilla,
   {
     id: "lily-co",
     title: "Lily & Co.",
@@ -146,24 +211,5 @@ export const projects = [
       "Improved local discoverability through SEO and location-based integrations.",
     ],
     demoLink: "https://www.charliesbarber.shop/",
-  },
-  {
-    id: "society22",
-    title: "Society22",
-    category: "Platform Architecture",
-    imgPath: "https://society22.club/Logo.png",
-    businessProblem:
-      "The platform had split frontend and backend deployments that added complexity, maintenance overhead, and release friction.",
-    solutionBuilt:
-      "A consolidated full-stack architecture that unified frontend assets and backend delivery under a single Laravel-served setup.",
-    contribution:
-      "Handled architecture planning, deployment restructuring, Nginx routing fixes, and build pipeline stabilization.",
-    techStack: ["React", "Laravel", "Filament PHP", "Nginx", "Linux"],
-    outcome: [
-      "Simplified release and deployment workflows by removing split pipeline complexity.",
-      "Resolved production bottlenecks related to routing, assets, and permissions.",
-      "Improved long-term maintainability with centralized architecture.",
-    ],
-    demoLink: "https://society22.club/",
   },
 ];

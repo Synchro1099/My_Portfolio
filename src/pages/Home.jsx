@@ -11,11 +11,14 @@ import TechMarquee from '../components/Home/TechMarquee';
 import Process from '../components/Home/Process';
 import Reveal from '../components/Reveal';
 import SEO from '../components/SEO';
-import { featuredProject } from '../data/projects';
+import { homeFeaturedProject as featuredProject } from '../data/projects';
 import { AiOutlineDownload, AiOutlineArrowRight } from "react-icons/ai";
 import { SiReact, SiNextdotjs, SiSupabase } from "react-icons/si";
 
 const Home = () => {
+  // A logo (no screenshot) is shown on a dark panel instead of edge to edge.
+  const isLogo = featuredProject.imgStyle === "logo";
+
   return (
     <>
       <SEO
@@ -125,12 +128,12 @@ const Home = () => {
             <Reveal className="home-latest-card spotlight">
               <Link
                 to={`/project#${featuredProject.id}`}
-                className="home-latest-media"
+                className={isLogo ? "home-latest-media home-latest-media--logo" : "home-latest-media"}
                 aria-label={`View ${featuredProject.title} case study`}
               >
                 <img
                   src={featuredProject.imgPath}
-                  alt={`${featuredProject.title} homepage`}
+                  alt={isLogo ? `${featuredProject.title.split(" — ")[0]} logo` : `${featuredProject.title} homepage`}
                   loading="lazy"
                   decoding="async"
                   width="1200"
@@ -139,13 +142,11 @@ const Home = () => {
               </Link>
               <div>
                 <div className="featured-project-badges">
-                  <span className="featured-badge">Latest Project</span>
+                  <span className="featured-badge">{featuredProject.badge}</span>
                   <span className="featured-category">{featuredProject.category}</span>
                 </div>
                 <h2>{featuredProject.title}</h2>
-                <p>
-                  A booking platform with a customer site and an Owner Portal. Double-bookings are blocked at the database level, and prices are calculated only on the server.
-                </p>
+                <p>{featuredProject.teaser}</p>
                 <div className="project-tech-list">
                   {featuredProject.techStack.slice(0, 5).map((tech) => (
                     <span className="project-tech-chip" key={tech}>{tech}</span>

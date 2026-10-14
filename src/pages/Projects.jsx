@@ -1,11 +1,10 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "../components/Projects/ProjectCard";
-import FeaturedProject from "../components/Projects/FeaturedProject";
 import Particle from "../components/Particle";
 import SEO from "../components/SEO";
 import Reveal from "../components/Reveal";
-import { featuredProject, projects } from "../data/projects";
+import { projects } from "../data/projects";
 
 const Projects = () => {
   return (
@@ -13,7 +12,7 @@ const Projects = () => {
       <SEO
         title="Projects"
         path="/project"
-        description="Explore real-world applications built by Jan Mark Pereda, including S-Villa, a race-condition-safe booking platform built with Next.js and Supabase."
+        description="Explore real-world applications built by Jan Mark Pereda, including Society 22, a serverless event registration and payment platform, and S-Villa, a race-condition-safe booking platform, both built with Next.js and Supabase."
       />
       <Container fluid className="project-section">
         <Particle />
@@ -25,15 +24,13 @@ const Projects = () => {
             I create scalable web applications and digital solutions that solve real business problems. I analyze requirements, design effective solutions, and build products that improve user experience, efficiency, and business operations.
           </p>
 
-          <FeaturedProject project={featuredProject} />
-
           <Reveal>
             <h2 className="project-subheading">
-              More <strong className="yellow">Client Work</strong>
+              Client <strong className="yellow">Work</strong>
             </h2>
           </Reveal>
 
-          <Row className="project-grid">
+          <Row className="project-grid justify-content-center">
             {projects.map((project, index) => (
               <Col md={6} className="project-card" key={project.id} id={project.id}>
                 <Reveal className="h-100" delay={(index % 2) * 120}>

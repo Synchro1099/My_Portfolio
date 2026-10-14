@@ -14,11 +14,14 @@ const ProjectCard = (props) => {
 
   const summaryText = props.solutionBuilt || props.businessProblem || props.description || "";
   const keyOutcome = props.outcome && props.outcome[0];
+  // The card shows up to 6 tags; the case study lists the full stack.
+  const cardTech = (props.techStack || []).slice(0, 6);
+  const isLogo = props.imgStyle === "logo";
 
   return (
     <>
       <Card className="project-card-view spotlight">
-        <div className="project-card-media">
+        <div className={isLogo ? "project-card-media project-card-media--logo" : "project-card-media"}>
           {imgFailed ? (
             <div className="project-card-fallback" aria-hidden="true">
               {props.title}
@@ -27,7 +30,7 @@ const ProjectCard = (props) => {
             <Card.Img
               variant="top"
               src={props.imgPath}
-              alt={`${props.title} project preview`}
+              alt={isLogo ? `${props.title.split(" — ")[0]} logo` : `${props.title} project preview`}
               loading="lazy"
               decoding="async"
               onError={() => setImgFailed(true)}
@@ -46,9 +49,9 @@ const ProjectCard = (props) => {
             </p>
           )}
 
-          {props.techStack && props.techStack.length > 0 && (
+          {cardTech.length > 0 && (
             <div className="project-tech-list">
-              {props.techStack.map((tech) => (
+              {cardTech.map((tech) => (
                 <span className="project-tech-chip" key={tech}>{tech}</span>
               ))}
             </div>
@@ -118,15 +121,75 @@ const ProjectCard = (props) => {
             </section>
           )}
 
-          {props.techStack && props.techStack.length > 0 && (
+          {props.customerFeatures && (
+            <section className="project-modal-section">
+              <h4>{props.customerTitle || "Customer Side"}</h4>
+              <ul className="project-impact-list">
+                {props.customerFeatures.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {props.ownerFeatures && (
+            <section className="project-modal-section">
+              <h4>Owner Portal</h4>
+              <ul className="project-impact-list">
+                {props.ownerFeatures.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {props.highlights && (
+            <section className="project-modal-section">
+              <h4>Technical Highlights</h4>
+              <ul className="project-impact-list">
+                {props.highlights.map((item) => (
+                  <li key={item.title}>
+                    <strong>{item.title}:</strong> {item.text}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {props.hardening && (
+            <section className="project-modal-section">
+              <h4>{props.hardening.title}</h4>
+              <ul className="project-impact-list">
+                {props.hardening.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {props.techGroups ? (
             <section className="project-modal-section">
               <h4>Technology</h4>
-              <div className="project-tech-list">
-                {props.techStack.map((tech) => (
-                  <span className="project-tech-chip" key={tech}>{tech}</span>
+              <dl className="project-tech-groups">
+                {props.techGroups.map((group) => (
+                  <div key={group.label}>
+                    <dt>{group.label}</dt>
+                    <dd>{group.items}</dd>
+                  </div>
                 ))}
-              </div>
+              </dl>
             </section>
+          ) : (
+            props.techStack && props.techStack.length > 0 && (
+              <section className="project-modal-section">
+                <h4>Technology</h4>
+                <div className="project-tech-list">
+                  {props.techStack.map((tech) => (
+                    <span className="project-tech-chip" key={tech}>{tech}</span>
+                  ))}
+                </div>
+              </section>
+            )
           )}
         </Modal.Body>
         <Modal.Footer>

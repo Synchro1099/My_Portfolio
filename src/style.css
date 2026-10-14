@@ -3833,3 +3833,63 @@ html.hide-back-to-top .back-to-top {
     border-color: var(--bs-btn-border-color);
   }
 }
+
+/* --------- */
+/* Project card: brand logo instead of a screenshot */
+/* --------- */
+.project-card-media--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Matches the logo image's own black background, so the edges blend. */
+  background: #000000;
+}
+
+.project-card-media--logo .card-img-top {
+  width: auto;
+  height: 72%;
+  object-fit: contain;
+}
+
+/* Homepage feature: same logo panel, at the screenshot's 16:10 size */
+.home-latest-media--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  background: #000000;
+}
+
+.home-latest-media--logo img {
+  width: auto;
+  height: 66%;
+  object-fit: contain;
+}
+
+/* Case study popup: grouped tech stack */
+.project-tech-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1.5rem;
+  margin: 0;
+}
+
+.project-tech-groups dt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-text);
+  margin-bottom: 0.15rem;
+}
+
+.project-tech-groups dd {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-body);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .project-tech-groups {
+    grid-template-columns: 1fr;
+  }
+}
